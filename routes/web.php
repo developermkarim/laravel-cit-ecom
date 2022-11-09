@@ -3,6 +3,7 @@
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\frontend\SocialLoginController;
 use App\Http\Controllers\frontend\UserAuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePageController;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //     return view('frontend.index');
-// }); 
+// });
 
 
 Auth::routes();
@@ -90,7 +91,7 @@ Route::get('/',[HomePageController::class,'index'])->name('home');
 Route::get('/cart',[HomePageController::class,'cart'])->name('cart');
 
 Route::get('/product_show/{slug}',[HomePageController::class,'productView'])->name('product.show');
- 
+
 //  Route::get('shop/',[HomePageController::class,'shop'])->name('product.shop');
 
 Route::get('/shopFilter/{filterCategory?}',[HomePageController::class,'shopFilter'])->name('product.shopFilter');
@@ -106,3 +107,8 @@ Route::prefix('user/')->name('user.')->group(function(){
     Route::post('createRegister',[UserAuthController::class,'createRegister'])->name('create.register');
 
 });
+
+
+Route::get('google/login',[SocialLoginController::class,'googleGetData'])->name('google.login');
+
+Route::get('google/redirect',[SocialLoginController::class,'googleRedirect'])->name('google.redirect');

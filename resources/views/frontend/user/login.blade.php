@@ -20,9 +20,10 @@
                         <i style="font-size:20px;color:white" class="fab fa-facebook-f"></i>
                       </button>
 
-                      <button style="background-color:#dc4e41" type="button" class="btn btn-floating mx-1">
+                      <a href="{{ route('google.login') }}"><button style="background-color:#dc4e41" type="button" class="btn btn-floating mx-1">
                         <i style="font-size:20px;color:white" class="fa fa-google-plus-official"></i>
-                      </button>
+                      </button></a>
+
                       <button style="background-color: #00405d" type="button" class="btn  btn-floating mx-1">
                         <i style="font-size:20px;color:white" class="fa fa-github"></i>
                       </button>
