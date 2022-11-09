@@ -6,8 +6,6 @@ use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-use function Ramsey\Uuid\v1;
-
 class BrandController extends Controller
 {
     public function index()
