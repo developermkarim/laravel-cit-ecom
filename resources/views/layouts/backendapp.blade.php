@@ -607,7 +607,8 @@ License: You must have a valid license purchased only from themeforest(the above
                             </li>
                         </ul>
                     </li>
-
+                    {{--  Brand Management --}}
+                   @hasanyrole('admin')
                     <li>
                         <a href="javascript:;" class="side-menu side-menu--open {{Request::routeis('pd.brand') ? 'side-menu--active' :''}} ">
                             <div class="side-menu__icon"> <i data-feather="award"></i> </div>
@@ -626,6 +627,9 @@ License: You must have a valid license purchased only from themeforest(the above
                            
                         </ul>
                     </li>
+                     {{--  Brand Management End--}}
+
+                    {{--  Category Management --}}
                     <li>
                         <a href="javascript:;" class="side-menu side-menu--open {{Request::routeis('category.add') ? 'side-menu--active' :''}} ">
                             <div class="side-menu__icon"> <i data-feather="award"></i> </div>
@@ -650,6 +654,10 @@ License: You must have a valid license purchased only from themeforest(the above
                            
                         </ul>
                     </li>
+                    @endhasanyrole
+ {{--  Category Management End--}}
+ @hasanyrole('admin|product-manager')
+                    {{--  Product Management --}}
                     <li>
                         <a href="javascript:;" class="side-menu side-menu--open {{Request::routeis('product.add') ? 'side-menu--active' :''}} ">
                             <div class="side-menu__icon"> <i data-feather="award"></i> </div>
@@ -668,6 +676,8 @@ License: You must have a valid license purchased only from themeforest(the above
                           
                         </ul>
                     </li>
+                     {{--  Product Management end --}}
+                     @endhasanyrole
                 </ul>
             </nav>
             <!-- END: Side Menu -->

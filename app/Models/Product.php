@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+
     use HasFactory;
 
     public function category()
@@ -22,5 +23,10 @@ class Product extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function product_img()
+    {
+       return $this->hasMany(ProductImage::class);
     }
 }

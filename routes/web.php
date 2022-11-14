@@ -3,6 +3,8 @@
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\frontend\SocialLoginController;
+use App\Http\Controllers\frontend\UserAuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePageController;
 use Illuminate\Support\Facades\Auth;
@@ -21,14 +23,17 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //     return view('frontend.index');
-// });
+// }); 
 
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/home',[App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('admin',[HomeController::class,'dashboard'])->name('dashboard');
+Route::middleware(['auth','role:admin|product-manager'])->group(function(){
+
+
+Route::get('dashboard',[HomeController::class,'dashboard'])->name('dashboard');
 
 
 /* Brand Routes Here */
@@ -75,17 +80,35 @@ Route::prefix('product/')->name('product.')->group(function(){
     //  Route::post('/store',[ProductController::class,'subCategoryStore'])->name('store');
     Route::post('/product_store',[ProductController::class,'productStore'])->name('store');
 
-    // Route::DELETE('delete/{deleteData:slug}',[ProductController::class,'subCategoryDelete'])->name('delete');
- 
-    // Route::GET('edit/{editDataToForm:slug}',[ProductController::class,'editSubCategory'])->name('edit');
- 
-    // Route::PUT('update/{updateDataPost:slug}',[ProductController::class,'updateSubCategory'])->name('update');
     Route::post('/getSubCategory',[ProductController::class,'getSubcategory'])->name('getSubcategory');
+
 });
 
-
-
-
+});
 
 /* Front End Routes Here */
-Route::get('/',[HomePageController::class,'home'])->name('home');
+Route::get('/',[HomePageController::class,'index'])->name('home');
+Route::get('/cart',[HomePageController::class,'cart'])->name('cart');
+
+Route::get('/product_show/{slug}',[HomePageController::class,'productView'])->name('product.show');
+ 
+//  Route::get('shop/',[HomePageController::class,'shop'])->name('product.shop');
+
+Route::get('/shopFilter/{filterCategory?}',[HomePageController::class,'shopFilter'])->name('product.shopFilter');
+Route::post('search/',[HomePageController::class,'searchable'])->name('product.search');
+
+/* User Auth Routes */
+Route::prefix('user/')->name('user.')->group(function(){
+
+    Route::get('/login',[UserAuthController::class,'login'])->name('login');
+    Route::post('createLogin',[UserAuthController::class,'create'])->name('create');
+
+    Route::get('/register',[UserAuthController::class,'register'])->name('register');
+Route::post('createRegister',[UserAuthController::class,'createRegister'])->name('create.register');
+
+});
+
+Route::get('google/login',[SocialLoginController::class,'googleGetData'])->name('google.login');
+
+Route::get('google/redirect',[SocialLoginController::class,'googleRedirect'])->name('google.redirect');
+

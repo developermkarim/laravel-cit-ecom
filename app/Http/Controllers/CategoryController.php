@@ -16,7 +16,7 @@ class CategoryController extends Controller
         $extension = $requestImage->categoryImage->extension();
         $imageName = 'category-' . $requestImage->slug . '.'. $extension;
         $imagePath = $requestImage->categoryImage->storeAs('category/',$imageName,'public');
-        $image_uri = env('APP_URL') . '/storage/' . $imagePath;
+        $image_uri = env('APP_URL') . '/storage/' . $imagePath; 
 
         return ['imagepath'=>$imageName,'imageUri'=>$image_uri];
     }
