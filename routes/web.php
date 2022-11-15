@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\frontend\SocialLoginController;
 use App\Http\Controllers\frontend\UserAuthController;
@@ -106,9 +107,22 @@ Route::prefix('user/')->name('user.')->group(function(){
     Route::get('/register',[UserAuthController::class,'register'])->name('register');
 Route::post('createRegister',[UserAuthController::class,'createRegister'])->name('create.register');
 
+/* Cart and Cart Item of Product */
+
+Route::get('cart/{id}',[CartController::class,'addToCart'])->name('product.cart');
+
+Route::get('cartList/',[CartController::class,'cartLists'])->name('cart.list');
+
+Route::get('dropDowncartList/',[CartController::class,'dropdownCart'])->name('dropdown.cart.list');
+
+Route::get('cart/remove/{id}',[CartController::class,'cartRemove'])->name('cart.remove');
+
+Route::get('allCart/remove/',[CartController::class,'allCartRemove'])->name('allCart.remove');
 });
 
 Route::get('google/login',[SocialLoginController::class,'googleGetData'])->name('google.login');
 
 Route::get('google/redirect',[SocialLoginController::class,'googleRedirect'])->name('google.redirect');
+
+
 

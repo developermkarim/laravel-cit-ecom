@@ -1,5 +1,5 @@
 <?php
-
+ 
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -181,7 +181,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
+        App\Providers\MenuServiceProvider::class,
+        // Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
          * Package Service Providers...
