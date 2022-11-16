@@ -8,7 +8,7 @@ use App\Http\Controllers\frontend\SocialLoginController;
 use App\Http\Controllers\frontend\UserAuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePageController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\frontend\OrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //     return view('frontend.index');
-// }); 
+// });
 
 
 Auth::routes();
@@ -94,7 +94,7 @@ Route::get('/cart',[HomePageController::class,'cart'])->name('cart');
 
 Route::get('/product_show/{slug}',[HomePageController::class,'productView'])->name('product.show');
 <<<<<<< HEAD
- 
+
 =======
 
 >>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
