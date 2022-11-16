@@ -53,12 +53,13 @@ class OrderController extends Controller
         $orderModel->save();
 
           /* Clear or removed the cart while going to check out */
+          
     foreach ($selectedcarts as  $cart) {
 
         $cart->delete();
     }
 
-    return redirect()->back();
+    return redirect()->route('user.cart.list');
 
     }
 
