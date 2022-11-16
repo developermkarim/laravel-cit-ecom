@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('layouts.frontendapp')
 
 @section('frontend-content')
@@ -90,5 +91,12 @@
         </div>
     </div>
 </div>
+=======
+@extends('layouts.frontend')
+
+@section('cart-content')
+
+<h2> THis is Cart Page Here</h2>
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
 
 @endsection

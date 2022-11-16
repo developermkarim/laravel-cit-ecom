@@ -15,7 +15,10 @@
         <link rel="stylesheet" href="{{asset('frontend/assets/css/material-design-iconic-font.min.css')}}">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="{{asset('frontend/assets/css/font-awesome.min.css')}}">
+<<<<<<< HEAD
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css"/>
+=======
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
         <!-- Font Awesome Stars-->
         <link rel="stylesheet" href="{{asset('frontend/assets/css/fontawesome-stars.css')}}">
         <!-- Meanmenu CSS -->
@@ -212,12 +215,17 @@
                                             <div class="hm-minicart-trigger">
                                                 <span class="item-icon"></span>
                                                 <span class="item-text">£80.00
+<<<<<<< HEAD
                                                     <span class="cart-item-count">{{ $cartCount }}</span>
+=======
+                                                    <span class="cart-item-count">2</span>
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
                                                 </span>
                                             </div>
                                             <span></span>
                                             <div class="minicart">
                                                 <ul class="minicart-product-list">
+<<<<<<< HEAD
                                                     @php
                                                     $subToal = 0;
                                                    $deliveryCharge=0;   
@@ -228,18 +236,37 @@
                                                    $subToal+= $cart->products->price * $cart->quantity;
                                                    $deliveryCharge+= $cart->quantity * 50;
                                                @endphp
+=======
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
                                                     <li>
                                                         <a href="single-product.html" class="minicart-product-image">
                                                             <img src="images/product/small-size/1.jpg" alt="cart products">
                                                         </a>
                                                         <div class="minicart-product-details">
+<<<<<<< HEAD
                                                             <h6><a href="single-product.html">{{ $cart->products->name }}</a></h6>
+=======
+                                                            <h6><a href="single-product.html">Aenean eu tristique</a></h6>
                                                             <span>£40 x 1</span>
                                                         </div>
                                                         <button class="close">
                                                             <i class="fa fa-close"></i>
                                                         </button>
                                                     </li>
+                                                    <li>
+                                                        <a href="single-product.html" class="minicart-product-image">
+                                                            <img src="images/product/small-size/2.jpg" alt="cart products">
+                                                        </a>
+                                                        <div class="minicart-product-details">
+                                                            <h6><a href="single-product.html">Aenean eu tristique</a></h6>
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
+                                                            <span>£40 x 1</span>
+                                                        </div>
+                                                        <button class="close">
+                                                            <i class="fa fa-close"></i>
+                                                        </button>
+                                                    </li>
+<<<<<<< HEAD
                                                     @endforeach
                                                      
                                                     
@@ -251,6 +278,15 @@
                                                         <span>View Full Cart</span>
                                                     </a>
                                                     <a href="#" class="li-button li-button-fullwidth li-button-sm">
+=======
+                                                </ul>
+                                                <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
+                                                <div class="minicart-button">
+                                                    <a href="checkout.html" class="li-button li-button-dark li-button-fullwidth li-button-sm">
+                                                        <span>View Full Cart</span>
+                                                    </a>
+                                                    <a href="checkout.html" class="li-button li-button-fullwidth li-button-sm">
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
                                                         <span>Checkout</span>
                                                     </a>
                                                 </div>
@@ -2208,10 +2244,14 @@
         <script src="{{ asset('frontend/assets/js/jquery.nice-select.min.js') }}"></script>
         <!-- ScrollUp js -->
         <script src="{{ asset('frontend/assets/js/scrollUp.min.js') }}"></script>
+<<<<<<< HEAD
        {{-- Toast Notify js  --}}
        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
       {{--  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
        <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script> --}}
+=======
+       
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
         <!-- Main/Activator js -->
         <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 
@@ -2249,6 +2289,7 @@
             
         })
         </script>
+<<<<<<< HEAD
          <script>
             @if(Session::has('message'))
             var type = "{{ Session::get('alert-type','info') }}"
@@ -2268,6 +2309,8 @@
             }
             @endif 
            </script>
+=======
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
     </body>
 
 <!-- shopping-cart31:32-->

@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+<<<<<<< HEAD
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
+=======
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
 use Illuminate\Support\ServiceProvider;
 
 class MenuServiceProvider extends ServiceProvider
@@ -25,6 +28,7 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+<<<<<<< HEAD
         
         view()->composer('layouts.frontendapp',function($view){
             $count =0;
@@ -36,5 +40,8 @@ class MenuServiceProvider extends ServiceProvider
             return $view->with('cartCount',$count);
             
         });
+=======
+        //
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
     }
 }

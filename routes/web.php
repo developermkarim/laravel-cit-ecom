@@ -93,7 +93,11 @@ Route::get('/',[HomePageController::class,'index'])->name('home');
 Route::get('/cart',[HomePageController::class,'cart'])->name('cart');
 
 Route::get('/product_show/{slug}',[HomePageController::class,'productView'])->name('product.show');
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
 //  Route::get('shop/',[HomePageController::class,'shop'])->name('product.shop');
 
 Route::get('/shopFilter/{filterCategory?}',[HomePageController::class,'shopFilter'])->name('product.shopFilter');
@@ -106,6 +110,7 @@ Route::prefix('user/')->name('user.')->group(function(){
     Route::post('createLogin',[UserAuthController::class,'create'])->name('create');
 
     Route::get('/register',[UserAuthController::class,'register'])->name('register');
+<<<<<<< HEAD
 Route::post('createRegister',[UserAuthController::class,'createRegister'])->name('create.register');
 
 /* Cart and Cart Item of Product */
@@ -131,3 +136,13 @@ Route::get('google/redirect',[SocialLoginController::class,'googleRedirect'])->n
 
 
 
+=======
+    Route::post('createRegister',[UserAuthController::class,'createRegister'])->name('create.register');
+
+});
+
+
+Route::get('google/login',[SocialLoginController::class,'googleGetData'])->name('google.login');
+
+Route::get('google/redirect',[SocialLoginController::class,'googleRedirect'])->name('google.redirect');
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47

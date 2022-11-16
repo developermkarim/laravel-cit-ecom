@@ -218,8 +218,13 @@
                                                         @if($singleProduct->discount_price)
                                                             
                                                        
+<<<<<<< HEAD
                                                         <span class="new-price new-price-2">৳ {{ number_format($singleProduct->price,0) }}</span>
                                                         <span class="old-price">৳ {{ number_format($singleProduct->price + $singleProduct->discount_price,0) }}</span>
+=======
+                                                        <span class="new-price new-price-2">{{ $singleProduct->price }}</span>
+                                                        <span class="old-price">{{ $singleProduct->price + $singleProduct->discount_price }}</span>
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
                                                         <span class="discount-percentage">{{number_format(round(($singleProduct->discount_price /
                                                             $singleProduct->price)*100),0) }} %</span>
 
@@ -405,7 +410,11 @@
                                        
                                         <div class="single-product-wrap">
                                             <div class="product-image">
+<<<<<<< HEAD
                                                 <a href="{{ $pdItem->thumbnail_uri }}">
+=======
+                                                <a href="single-product.html">
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
                                                    
                                                         
                                                    
@@ -431,12 +440,20 @@
                                                     </div>
                                                     <h4><a class="product_name" href="single-product.html">{{ $pdItem->title }}</a></h4>
                                                     <div class="price-box">
+<<<<<<< HEAD
                                                         <span class="new-price"> ৳  {{ number_format($pdItem->price,2)  }}</span>
+=======
+                                                        <span class="new-price"> BDT  {{ $pdItem->price }}</span>
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
                                                     </div>
                                                 </div>
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
+<<<<<<< HEAD
                                                         <li class="add-cart "><a href="{{ route('user.product.cart',$pdItem->id) }}">Add to cart</a></li>
+=======
+                                                        <li class="add-cart active"><a href="#">Add to cart</a></li>
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
                                                         <li><a class="links-details" href="single-product.html"><i class="fa fa-heart-o"></i></a></li>
                                                         <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
                                                     </ul>
@@ -1202,7 +1219,11 @@
                                     <div class="product-social-sharing pt-25">
                                         <ul>
                                             <li class="facebook"><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
+<<<<<<< HEAD
                                     <li class="twitter"><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
+=======
+                                            <li class="twitter"><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
+>>>>>>> 74578dd66ecbd120ba1d50728d3596c64d76ce47
                                             <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i>Google +</a></li>
                                             <li class="instagram"><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li>
                                         </ul>
