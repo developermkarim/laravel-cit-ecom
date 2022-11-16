@@ -12,7 +12,7 @@ class OrderController extends Controller
 {
     public function checkout()
     {
-        // invoice_id	user_id	name	email	address	note	totals	
+        // invoice_id	user_id	name	email	address	note	totals
 
         $faker = Faker::create();
         // $orderModel = new Order();
@@ -26,8 +26,7 @@ class OrderController extends Controller
             'address'=>$faker->address(),
             'note'=> $faker->sentence(20),
             'totals'=>$totalPrice,
-            'created_at'=>Carbon::now(),
-            'updated_at'=>'2022-11-16 01:54:35',
+
         ]);
 
         /* Fetch the selected cart */
@@ -35,15 +34,15 @@ class OrderController extends Controller
 
         //  dd($selectedcarts);
         foreach ($selectedcarts as $value) {
-           
+
             OrderItem::create([
                 'order_id'=> $orders->id,
                 'product_id'=> $value->products->id,
                 'price'=> $value->products->discount_price ?? $value->products->price,
                 'quantity'=> $value->quantity,
-                'created_at'=>Carbon::now(),
-                'updated_at'=>'2022-11-16 01:54:35',
-            ]);  
+                /* 'created_at'=>Carbon::now(),
+                'updated_at'=>'2022-11-16 01:54:35', */
+            ]);
             /* Total Price count */
             $totalPrice+= ($value->products->discount_price ?? $value->products->price) * $value->quantity;
         }
@@ -55,7 +54,7 @@ class OrderController extends Controller
 
           /* Clear or removed the cart while going to check out */
     foreach ($selectedcarts as  $cart) {
-       
+
         $cart->delete();
     }
 
@@ -63,5 +62,5 @@ class OrderController extends Controller
 
     }
 
-  
+
 }
