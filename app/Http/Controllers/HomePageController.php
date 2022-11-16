@@ -51,19 +51,25 @@ class HomePageController extends Controller
     {
         $selectedCategory = $filterCategory;
         // dd($filterCategory);
-        $categories = Category::has('subCategory')->with('subCategory')->get();
+        $sorting = $request->sorting;
+        $sortingValue = str($sorting)->explode(',');
+        // dd($sortingValue);
+        $categories = Category::with('subCategory')->get();
 
         $brand = Brand::all();
         //* PRODUCTS
     
         $query = Product::query();
         if($request->startPrice && $request->endPrice){
-            $query->where('price','>=',$request->startPrice)->where('price',',<=',$request->endPrice);
+            $query->where('price','>=',$request->startPrice)->where('price','<=',$request->endPrice);
         }
 
-     /*    if($selectedCategory){
-            $query->where('category_id',$selectedCategory)->orWhere('');
-        } */
+        if($selectedCategory){
+            $query->where('category_id',$selectedCategory)->orWhere('sub_category_id',$selectedCategory);
+        }
+        if($sorting){
+            $query->orderBy($sortingValue[0],$sortingValue[1]);
+        }
         
         $products = $query->get();
         return view('frontend.product.product-shop', compact('categories','products','brand'));

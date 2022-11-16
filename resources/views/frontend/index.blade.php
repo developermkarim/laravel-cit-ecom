@@ -173,77 +173,64 @@
                         <div id="li-new-product" class="tab-pane active show" role="tabpanel">
                             <div class="row">
                                 <div class="product-active owl-carousel">
-                                   
-                                    @foreach ($categories as $category)
-                                        @foreach ($category->product as $singleProduct)
-                                            
-                                       
-                                    <div class="col-lg-12">
-                                        <!-- single-product-wrap start -->
-                                        
-                                        <div class="single-product-wrap">
-                                            
-                                            <div class="product-image">
-                                                
-                                                @if (Carbon\Carbon::today() >= $singleProduct->start_date && Carbon\Carbon::today() <= $singleProduct->end_date)
-                                                    
-                                               
-                                                <span style="z-index:2;border-radius:50%" class="p-1  text-white  bg-primary rounded font-semibold">{{ number_format(round(($singleProduct->discount_price/$singleProduct->price)*100),0) }} % </span>
+                             
+                                    @if(isset($categories))
 
-                                                @endif
-                                                <a href="{{ url('product_show',$singleProduct->slug) }}">
-                                                    <img src="{{ $singleProduct->thumbnail_uri }}" alt="Li's Product Image">
-                                                </a>
-                                               
-                                            </div>
-                                            <div class="product_desc">
-                                                <div class="product_desc_info">
-                                                    <div class="product-review">
-                                                        <h5 class="manufacturer">
-                                                            <a href="product-details.html">{{ $singleProduct->short_detail }}</a>
-                                                        </h5>
-                                                        <div class="rating-box">
-                                                            <ul class="rating">
-                                                                <li><i class="fa fa-star-o"></i></li>
-                                                                <li><i class="fa fa-star-o"></i></li>
-                                                                <li><i class="fa fa-star-o"></i></li>
-                                                                <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                                <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <h4><a class="product_name" href="single-product.html">{{ $singleProduct->title }}</a></h4>
-                                                    <div class="price-box">
+                                   @foreach ($categories as $category)
 
-                                                        @if($singleProduct->discount_price)
-                                                            
+                                   @foreach ($category->product as $pdItem)
+                                   <div class="col-lg-12">
+                                       <!-- single-product-wrap start -->
+                                      
+                                       <div class="single-product-wrap">
+                                           <div class="product-image">
+                                               <a href="{{ $pdItem->thumbnail_uri }}">
+                                                  
                                                        
-                                                        <span class="new-price new-price-2">{{ $singleProduct->price }}</span>
-                                                        <span class="old-price">{{ $singleProduct->price + $singleProduct->discount_price }}</span>
-                                                        <span class="discount-percentage">{{number_format(round(($singleProduct->discount_price /
-                                                            $singleProduct->price)*100),0) }} %</span>
+                                                  
+                                                   <img src="{{ $pdItem->thumbnail_uri }}" alt="Li's Product Image">
+                                               </a>
+                                               <span class="sticker">New</span>
+                                           </div>
+                                           <div class="product_desc">
+                                               <div class="product_desc_info">
+                                                   <div class="product-review">
+                                                       <h5 class="manufacturer">
+                                                <a href="product-details.html">{{ $pdItem->short_detail }}</a>
+                                                       </h5>
+                                                       <div class="rating-box">
+                                                           <ul class="rating">
+                                                               <li><i class="fa fa-star-o"></i></li>
+                                                               <li><i class="fa fa-star-o"></i></li>
+                                                               <li><i class="fa fa-star-o"></i></li>
+                                                               <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                                               <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                                           </ul>
+                                                       </div>
+                                                   </div>
+                                                   <h4><a class="product_name" href="single-product.html">{{ $pdItem->title }}</a></h4>
+                                                   <div class="price-box">
+                                                       <span class="new-price"> ৳  {{ number_format($pdItem->price,2)  }}</span>
+                                                   </div>
+                                               </div>
+                                               <div class="add-actions">
+                                                   <ul class="add-actions-link">
+                                                       <li class="add-cart "><a href="{{ route('user.product.cart',$pdItem->id) }}">Add to cart</a></li>
+                                                       <li><a class="links-details" href="single-product.html"><i class="fa fa-heart-o"></i></a></li>
+                                                       <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
+                                                   </ul>
+                                               </div>
+                                           </div>
+                                       </div>
+                                      
+                                       <!-- single-product-wrap end -->
+                                   </div>
+                                   @endforeach
 
-                                                        @endif
-                                                        {{-- {{number_format(round(($row->discount_price/$row->selling_price)*100), 2)}}% --}}
-                                                    </div>
-                                                </div>
-                                                <div class="add-actions">
-                                                    <ul class="add-actions-link">
-                                                        <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                                        <li><a class="links-details" href="single-product.html"><i class="fa fa-heart-o"></i></a></li>
-                                                        <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="{{ url('product_show',$singleProduct->slug) }}"><i class="fa fa-eye"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- single-product-wrap end -->
-                                    </div>
-
-                                    @endforeach
-
-                                    @endforeach
-
-                                </div>
+                                   @endforeach
+                                   
+                                   @endif
+                               </div>
                             </div>
                         </div>
                         <div id="li-bestseller-product" class="tab-pane" role="tabpanel">
@@ -431,7 +418,7 @@
                                                     </div>
                                                     <h4><a class="product_name" href="single-product.html">{{ $pdItem->title }}</a></h4>
                                                     <div class="price-box">
-                                                        <span class="new-price"> BDT  {{ $pdItem->price }}</span>
+                                                        <span class="new-price"> ৳  {{ number_format($pdItem->price,2)  }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="add-actions">

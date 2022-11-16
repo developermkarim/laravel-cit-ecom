@@ -8,6 +8,7 @@ use App\Http\Controllers\frontend\SocialLoginController;
 use App\Http\Controllers\frontend\UserAuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\frontend\OrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -118,7 +119,13 @@ Route::get('dropDowncartList/',[CartController::class,'dropdownCart'])->name('dr
 Route::get('cart/remove/{id}',[CartController::class,'cartRemove'])->name('cart.remove');
 
 Route::get('allCart/remove/',[CartController::class,'allCartRemove'])->name('allCart.remove');
+/* Check out Method */
+
 });
+
+Route::get('cart/checkout/',[OrderController::class,'checkout'])->name('cart.checkout');
+
+
 
 Route::get('google/login',[SocialLoginController::class,'googleGetData'])->name('google.login');
 

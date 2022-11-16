@@ -1,7 +1,6 @@
 @extends('layouts.frontendapp')
 @section('frontend-content')
     
-<h1>Show Product</h1>
 
 <div class="content-wraper pt-60 pb-60 pt-sm-30">
     <div class="container">
@@ -33,12 +32,12 @@
                     <div class="product-select-box">
                         <div class="product-short">
                         <p>Sort By:</p>&nbsp; &nbsp;
-                        <select class="nice-select" name="form-select" id="" style="display: none;">
+                        <select class="nice-select" name="sorting form-select" id="" style="display: none;">
                             <option Sel class="current">Relevance</option>
                             <option value="price,asc">Low To High Price</option>
                             <option value="price,desc">High To low Price</option>
-                            <option value="id,desc">Newest Product</option>
-                            <option value="id,asc">Oldest Product</option>
+                            <option value="created_at,desc">Newest Product</option>
+                            <option value="created_at,asc">Oldest Product</option>
                         </select>
                     </div>
 

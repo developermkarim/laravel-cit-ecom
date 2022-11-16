@@ -81,7 +81,7 @@
                                     <li>Delivery Charge <span>{{  number_format($deliveryCharge,2)  }}৳</span></li>
                                     <li>Total <span>{{  number_format($deliveryCharge + $subToal,2)  }}৳</span></li>
                                 </ul>
-                                <a href="#">Proceed to checkout</a>
+                                <a href="{{ route('cart.checkout')}}">Proceed to checkout</a>
                             </div>
                         </div>
                     </div>
