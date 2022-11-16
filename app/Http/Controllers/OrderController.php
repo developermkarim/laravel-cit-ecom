@@ -52,8 +52,8 @@ class OrderController extends Controller
         $orderModel->totals = $totalPrice;
         $orderModel->save();
 
-          /* Clear or removed the cart while going to check out */
-          
+          /* Clear or removed the carts while going to check out */
+
     foreach ($selectedcarts as  $cart) {
 
         $cart->delete();
