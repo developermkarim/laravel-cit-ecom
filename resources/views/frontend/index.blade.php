@@ -218,8 +218,8 @@
                                                         @if($singleProduct->discount_price)
                                                             
                                                        
-                                                        <span class="new-price new-price-2">{{ $singleProduct->price }}</span>
-                                                        <span class="old-price">{{ $singleProduct->price + $singleProduct->discount_price }}</span>
+                                                        <span class="new-price new-price-2">৳ {{ number_format($singleProduct->price,0) }}</span>
+                                                        <span class="old-price">৳ {{ number_format($singleProduct->price + $singleProduct->discount_price,0) }}</span>
                                                         <span class="discount-percentage">{{number_format(round(($singleProduct->discount_price /
                                                             $singleProduct->price)*100),0) }} %</span>
 
@@ -431,7 +431,7 @@
                                                     </div>
                                                     <h4><a class="product_name" href="single-product.html">{{ $pdItem->title }}</a></h4>
                                                     <div class="price-box">
-                                                        <span class="new-price"> BDT  {{ $pdItem->price }}</span>
+                                                        <span class="new-price"> ৳  {{ number_format($pdItem->price,2)  }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="add-actions">

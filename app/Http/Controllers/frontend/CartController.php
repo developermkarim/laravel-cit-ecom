@@ -30,7 +30,7 @@ class CartController extends Controller
 
        }
        else{
-        return redirect()->route('user.create');
+        return redirect()->route('user.login');
     }
     
       /*   return view('frontend.cart.cart'); */
@@ -60,7 +60,7 @@ public function dropdownCart()
                 'message'=>'cart Item deleted successfully',
                 'alert-type'=>'success',
             ];
-            return redirect()->back()->with($notification);
+            // return redirect()->back()->with($notification);
          }
          else{
 
@@ -69,8 +69,9 @@ public function dropdownCart()
                 'alert-type'=>'error',
             ];
 
-            return redirect()->back()->with($notification);
+            
          }
+         return redirect()->back()->with($notification);
 
     }
 

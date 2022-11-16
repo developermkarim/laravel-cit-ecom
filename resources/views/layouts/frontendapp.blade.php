@@ -223,10 +223,7 @@
                                                    $deliveryCharge=0;   
                                                  @endphp
                                                 @if (isset($allCarts))
-                                                    
-                                             
                                                @foreach ($allCarts as $cart)
-                                                   
                                                @php
                                                    $subToal+= $cart->products->price * $cart->quantity;
                                                    $deliveryCharge+= $cart->quantity * 50;
