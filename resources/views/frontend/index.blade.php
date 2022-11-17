@@ -216,7 +216,7 @@
                                                <div class="add-actions">
                                                    <ul class="add-actions-link">
                                                        <li class="add-cart "><a href="{{ route('user.product.cart',$pdItem->id) }}">Add to cart</a></li>
-                                                       <li><a class="links-details" href="single-product.html"><i class="fa fa-heart-o"></i></a></li>
+                                                       <li><a class="links-details" href="{{ route('user.wishlist',$pdItem->id) }}"><i class="fa fa-heart-o"></i></a></li>
                                                        <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
                                                    </ul>
                                                </div>
@@ -272,7 +272,7 @@
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
                                                         <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                                        <li><a class="links-details" href="single-product.html"><i class="fa fa-heart-o"></i></a></li>
+                                                        <li><a class="links-details" href=""><i class="fa fa-heart-o"></i></a></li>
                                                         <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
                                                     </ul>
                                                 </div>
@@ -424,7 +424,7 @@
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
                                                         <li class="add-cart "><a href="{{ route('user.product.cart',$pdItem->id) }}">Add to cart</a></li>
-                                                        <li><a class="links-details" href="single-product.html"><i class="fa fa-heart-o"></i></a></li>
+                                                        <li><a class="links-details" href="{{ route('user.wishlist',$pdItem->id) }}"><i class="fa fa-heart-o"></i></a></li>
                                                         <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
                                                     </ul>
                                                 </div>

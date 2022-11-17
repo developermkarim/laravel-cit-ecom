@@ -9,6 +9,7 @@ use App\Http\Controllers\frontend\UserAuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\frontend\OrderController;
+use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //     return view('frontend.index');
-// }); 
+// });
 
 
 Auth::routes();
@@ -93,13 +94,14 @@ Route::get('/',[HomePageController::class,'index'])->name('home');
 Route::get('/cart',[HomePageController::class,'cart'])->name('cart');
 
 Route::get('/product_show/{slug}',[HomePageController::class,'productView'])->name('product.show');
- 
+
 //  Route::get('shop/',[HomePageController::class,'shop'])->name('product.shop');
 
 Route::get('/shopFilter/{filterCategory?}',[HomePageController::class,'shopFilter'])->name('product.shopFilter');
 Route::post('search/',[HomePageController::class,'searchable'])->name('product.search');
 
 /* User Auth Routes */
+
 Route::prefix('user/')->name('user.')->group(function(){
 
     Route::get('/login',[UserAuthController::class,'login'])->name('login');
@@ -113,8 +115,6 @@ Route::post('createRegister',[UserAuthController::class,'createRegister'])->name
 Route::get('cart/{id}',[CartController::class,'addToCart'])->name('product.cart');
 
 Route::get('cartList/',[CartController::class,'cartLists'])->name('cart.list');
-
-Route::get('dropDowncartList/',[CartController::class,'dropdownCart'])->name('dropdown.cart.list');
 
 Route::get('cart/remove/{id}',[CartController::class,'cartRemove'])->name('cart.remove');
 
@@ -131,5 +131,11 @@ Route::get('google/login',[SocialLoginController::class,'googleGetData'])->name(
 
 Route::get('google/redirect',[SocialLoginController::class,'googleRedirect'])->name('google.redirect');
 
+Route::controller(WishListController::class)->group(function(){
+
+    Route::get('user/wishList/{id}','addToWishList')->name('user.wishlist');
+    Route::get('user/show-wishLists','showWishlists')->name('user.show.wishlist');
+    Route::get('user/removeWishList/{id}','removeWishList')->name('user.wishlist.remove');
+});
 
 

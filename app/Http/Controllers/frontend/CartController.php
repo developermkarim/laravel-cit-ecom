@@ -4,27 +4,47 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\WishList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
+   
     public function addToCart($id)
     {
        if(Auth::check()){
         if(Cart::where('user_id', auth()->user()->id)->where('product_id',$id)->exists()){
 
             Cart::where('user_id',auth()->user()->id)->where('product_id',$id)->first()->increment('quantity');
+            
+            // dd($wishlist->quantity);
         }
         else{
+            
+            //  dd($wishlist);
+            $wishlist =  WishList::with('products')->where('product_id',$id)->first();
             $cart = new Cart();
             $cart->user_id = Auth::user()->id;
             $cart->product_id = $id;
-            $cart->quantity =1;
-            $cart->save(); 
-        
+            $cart->quantity =  $wishlist->quantity ?? 1;
+            $cart->save();
+                
+
+            
+            /* Delete from wishlist */
+           
         }
+
+        $wishlist =  WishList::with('products')->where('product_id',$id)->first();
+
+        if($wishlist != null){
+
+           
+            $wishlist->delete();
+        }
+
 
         return back();
 
@@ -44,12 +64,12 @@ class CartController extends Controller
     }
 
 /* Cart in  Dropdown show  by click or hover*/
-public function dropdownCart()
+/* public function dropdownCart()
 {
     $allCarts = Cart::with('products')->where('user_id',auth()->user()->id)->get();
     // dd($allCarts);
     return view('layouts.frontendapp', compact('allCarts'));
-}
+} */
 
     public function cartRemove($id)
     {
