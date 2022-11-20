@@ -52,6 +52,7 @@
         <!-- Modernizr js -->
         <script src="{{asset('frontend/assets/js/vendor/modernizr-2.8.3.min.js')}}"></script>
         <script src="https://kit.fontawesome.com/92d6c198cd.js" crossorigin="anonymous"></script>
+        @yield('customStyle')
     </head>
     <body>
   
@@ -256,7 +257,7 @@
                                                     <a href="{{ url('user/cartList/') }}" class="li-button li-button-dark li-button-fullwidth li-button-sm">
                                                         <span>View Full Cart</span>
                                                     </a>
-                                                    <a href="{{ url('cart/checkout/') }}" class="li-button li-button-fullwidth li-button-sm">
+                                                    <a href="{{ route('cart.checkout.form') }}" class="li-button li-button-fullwidth li-button-sm">
                                                         <span>Checkout</span>
                                                     </a>
                                                 </div>

@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
+    public function checkoutForm()
+    {
+        return view('frontend.checkout.checkout');
+    }
     public function checkout()
     {
         // invoice_id	user_id	name	email	address	note	totals	
