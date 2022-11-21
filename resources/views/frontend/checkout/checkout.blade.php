@@ -159,9 +159,9 @@ margin-right: 25px;margin-top:30px">
           </div>
           
         </div>
-        <label>
-          <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-        </label>
+      {{--   <label>
+          <input type="checkbox" checked="checked" name="sameadr"> <span>Shipping address same as billing</span>
+        </label> --}}
         <input type="submit" value="Continue to checkout" class="btn">
       </form>
     </div>

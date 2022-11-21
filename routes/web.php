@@ -4,6 +4,8 @@ use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompareController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\frontend\SocialLoginController;
 use App\Http\Controllers\frontend\UserAuthController;
 use App\Http\Controllers\HomeController;
@@ -88,6 +90,18 @@ Route::prefix('product/')->name('product.')->group(function(){
 
 });
 
+/* Coupon Here */
+
+Route::prefix('/coupon')->name('coupon.')->group(function(){
+    Route::get('/all',[CouponController::class,'allCoupon'])->name('all');
+    Route::post('/add',[CouponController::class,'addCoupon'])->name('store');
+    Route::get('/edit/{id}',[CouponController::class,'editCoupon'])->name('edit');
+    Route::put('/update/{id}',[CouponController::class,'updateCoupon'])->name('update');
+    Route::get('/delete/{id}',[CouponController::class,'deleteCoupon'])->name('delete');
+    
+    Route::get('coupon/status/{status}/{id}',[CouponController::class,'statusCoupon'])->name('status');
+});
+
 
 
 });
@@ -140,6 +154,10 @@ Route::controller(WishListController::class)->group(function(){
     Route::get('user/wishList/{id}','addToWishList')->name('user.wishlist');
     Route::get('user/show-wishLists','showWishlists')->name('user.show.wishlist');
     Route::get('user/removeWishList/{id}','removeWishList')->name('user.wishlist.remove');
+});
+
+Route::controller(CompareController::class)->group(function(){
+    Route::get('product/compare', 'compareProduct')->name('compare.store');
 });
 
 

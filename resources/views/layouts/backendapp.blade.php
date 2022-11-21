@@ -23,6 +23,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN: CSS Assets-->
         @notifyCss
         <link rel="stylesheet" href="{{asset('backend/dist/css/app.css')}}"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://kit.fontawesome.com/92d6c198cd.js" crossorigin="anonymous"></script>
         @vite('resourse/css/app.css')
         <!-- END: CSS Assets-->
     </head>
@@ -622,6 +624,25 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <a href="{{route('pd.brand')}}" class="side-menu side-menu--active side-menu--open">
                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="side-menu__title"> All Brands</div>
+                                </a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:;" class="side-menu side-menu--open {{Request::routeis('coupon.add') ? 'side-menu--active' :''}} ">
+                            <div class="side-menu__icon"> <i data-feather="award"></i> </div>
+                            <div class="side-menu__title">
+                                Coupon Management
+                                <div class="side-menu__sub-icon"> <i data-feather="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                        <ul class="{{Request::routeis('coupon.add')? 'side-menu__sub-open':''}} ">
+                            <li>
+                                <a href="{{route('coupon.all')}}" class="side-menu side-menu--active side-menu--open">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> All Coupon</div>
                                 </a>
                             </li>
                            

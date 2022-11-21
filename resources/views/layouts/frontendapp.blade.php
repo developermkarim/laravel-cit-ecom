@@ -1,7 +1,7 @@
 
 <!doctype html>
 <html>
-    
+
 <!-- shopping-cart31:32-->
 <head>
         <meta charset="utf-8">
@@ -42,7 +42,7 @@
         <link rel="stylesheet" href="{{asset('frontend/assets/css/helper.css')}}">
         <!-- Main Style CSS -->
         <link rel="stylesheet" href="{{asset('frontend/assets/style.css')}}">
-        
+
          {{-- Filter Price Ranging  --}}
          <link rel="stylesheet" href="{{ asset('frontend/asset/css/price_range_style.css') }}">
           {{-- Filter Price Ranging  --}}
@@ -55,7 +55,7 @@
         @yield('customStyle')
     </head>
     <body>
-  
+
 
           <!--[if lt IE 8]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -96,20 +96,20 @@
                                                                      document.getElementById('logout-form').submit();">
                                                         {{ __('Logout') }}
                                                     </a>
-                        
+
                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                                         @csrf
                                                     </form>
-                                                </li>      
+                                                </li>
                                                     @endauth
-                                                   
+
                                                     @guest
                                                     <li><a href="{{ route('user.login') }}">Sign In</a></li>
 
                                                     <li><a href="{{ route('user.register') }}">Sign Up</a></li>
 
                                               @endguest
-                       
+
                                                 </ul>
                                             </div>
                                         </li>
@@ -164,33 +164,40 @@
                                 <!-- Begin Header Middle Searchbox Area -->
                                 <form action="#" class="hm-searchbox" style="position: relative">
                                     <select class="nice-select select-search-category">
-                                        <option value="0">All</option>                               
-                                        <option value="34">- - - -  Headphones</option>                     
-                                        <option value="35">- - - -  Video Games</option>                        
-                                        <option value="36">- - - -  Wireless Speakers</option>            
-                                        <option value="19">- - - -  Electronics</option>                        
-                                                  
-                                                        
-                                      
-                                        <option value="65">- - - -  Tops</option>                                 
-                                       
+                                        <option value="0">All</option>
+                                        <option value="34">- - - -  Headphones</option>
+                                        <option value="35">- - - -  Video Games</option>
+                                        <option value="36">- - - -  Wireless Speakers</option>
+                                        <option value="19">- - - -  Electronics</option>
+
+
+
+                                        <option value="65">- - - -  Tops</option>
+
                                     </select>
                                     <input id="search" type="text" placeholder="Enter your search key ...">
                                     <button id="search-btn" class="li-btn" type="submit"><i class="fa fa-search"></i></button>
                                     <div style="position: absolute; margin-left: 197px;
                                     margin-top: 41px;color:white">
                                         <ul style="background: #f6f7ec;padding:10px" id="ul-list">
-                                        
+
                                         </ul>
                                     </div>
                                 </form>
-                                
-                              
+
+
                                 <!-- Header Middle Searchbox Area End Here -->
                                 <!-- Begin Header Middle Right Area -->
                                 <div class="header-middle-right">
                                     <ul class="hm-menu">
                                         <!-- Begin Header Middle Wishlist Area -->
+                                        <li class="hm-wishlist">
+                                            <a href="{{ route('user.show.wishlist') }}">
+                                                <span class="cart-item-count wishlist-item-count">{{ $wishListCount }}</span>
+                                                <i class="fas fa-not-equal"></i>
+                                            </a>
+                                        </li>
+
                                         <li class="hm-wishlist">
                                             <a href="{{ route('user.show.wishlist') }}">
                                                 <span class="cart-item-count wishlist-item-count">{{ $wishListCount }}</span>
@@ -201,19 +208,19 @@
                                         <!-- Begin Header Mini Cart Area -->
                                         <li class="hm-minicart">
                                             <div class="hm-minicart-trigger">
-                                                
-                                                 
+
+
                                                 @php
-                                                $subToal = 0; 
+                                                $subToal = 0;
                                              @endphp
                                             @if (isset($allcart))
                                            @foreach ($allcart as $cart)
                                            @php
                                                $subToal+= $cart->products->price * $cart->quantity;
-                                              
+
                                            @endphp
                                            @endforeach
-                                                   
+
                                                 @endif
                                                 <span class="item-icon"></span>
                                                 <span class="item-text">৳{{ number_format($subToal,0) }}
@@ -225,7 +232,7 @@
                                                 <ul class="minicart-product-list">
                                                     @php
                                                     $subToal = 0;
-                                                   $deliveryCharge=0;   
+                                                   $deliveryCharge=0;
                                                  @endphp
                                                 @if (isset($allcart))
                                                @foreach ($allcart as $cart)
@@ -241,15 +248,15 @@
                                                             <h6><a href="single-product.html">{{ $cart->products->name }}</a></h6>
                                                             <span>{{ $cart->products->price }} x {{ $cart->quantity }}</span>
                                                         </div>
-                                                       
+
                                                        <a href="{{ url('cart/remove',$cart->id) }}">
                                                         <button class="close">
                                                             <i class="fa fa-close"></i>
                                                         </button>
-                                                    </a> 
+                                                    </a>
                                                     </li>
                                                     @endforeach
-                                                     
+
                                                 @endif
                                                 </ul>
                                                 <p class="minicart-total">SUBTOTAL: <span>£{{ $subToal }}</span> ৳</p>
@@ -284,7 +291,7 @@
                                        <ul style="margin-left: 554px">
                                         <li><a href="{{ url('/') }}">Home</a></li>
                                            <li class="megamenu-static-holder"><a href="index.html">Pages</a>
-                                               
+
                                            </li>
                                            <li><a href="about-us.html">About Us</a></li>
                                            <li><a href="contact.html">Contact</a></li>
@@ -301,7 +308,7 @@
                 <!-- Header Bottom Area End Here -->
                 <!-- Begin Mobile Menu Area -->
                 <div class="mobile-menu-area mobile-menu-area-4 d-lg-none d-xl-none col-12">
-                    <div class="container"> 
+                    <div class="container">
                         <div class="row">
                             <div class="mobile-menu">
                             </div>
@@ -340,17 +347,17 @@
                                    <li><a class="active" data-toggle="tab" href="#li-new-product"><span>New Arrival</span></a></li>
                                    <li><a data-toggle="tab" href="#li-bestseller-product"><span>Bestseller</span></a></li>
                                    <li><a data-toggle="tab" href="#li-featured-product"><span>Featured Products</span></a></li>
-                                </ul>               
+                                </ul>
                             </div>
                             <!-- Begin Li's Tab Menu Content Area -->
                         </div>
                     </div>
-                  
+
                 </div>
             </div> --}}
             <!-- product-area end -->
             <!-- Begin Li's Static Banner Area -->
-          
+
             <!-- Li's Static Banner Area End Here -->
             <!-- Begin Li's Laptop Product Area -->
            {{--  <section class="product-area li-laptop-product pt-60 pb-45 pt-sm-50 pt-xs-60">
@@ -1252,13 +1259,13 @@
             <!-- Begin Footer Area -->
 
              @yield('frontend-content')
-             
+
              @yield('cart-content')
 
             @include('includes.footer')
             <!-- Footer Area End Here -->
             <!-- Begin Quick View | Modal Area -->
-            
+
             <!-- Quick View | Modal Area End Here -->
         </div>
         <!-- Body Wrapper End Here -->
@@ -1336,15 +1343,15 @@
                             let li = `<li><a class="text-dark" href="/product_show/${result.slug}">${ result.title }</a></li>`
                             lists.push(li);
                             search.val(result.slug);
-                            
-                        }) 
+
+                        })
                         storeData.html(lists);
-                        
-                        
+
+
                     }
                 })
             }, 500);
-            
+
         })
         </script>
          <script>
@@ -1362,10 +1369,12 @@
                break;
                case 'error':
                toastr.error(" {{ Session::get('message') }} ");
-               break; 
+               break;
             }
-            @endif 
+            @endif
            </script>
+
+           @stack('customeFrontJs')
     </body>
 
 <!-- shopping-cart31:32-->

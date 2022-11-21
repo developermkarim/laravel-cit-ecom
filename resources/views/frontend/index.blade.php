@@ -1,17 +1,17 @@
    @extends('layouts.frontendapp')
         <!-- Begin Body Wrapper -->
       @section('frontend-content')
-{{-- 
+{{--
       @if (isset($categories))
-          
+
       <ul>
-        
-    
+
+
       @foreach ($categories as $category)
 
       <li>{{ str()->headline($category->title) }}</li>
 
-        <li> 
+        <li>
       <ul>
       @foreach ($category->product as $item)
           <li>{{ $item->title }}</li>
@@ -25,7 +25,7 @@
       @endif
       {{ exit }} --}}
             <!-- Begin Header Area -->
-           
+
             <!-- Header Area End Here -->
             <!-- Begin Slider With Banner Area -->
 
@@ -37,13 +37,13 @@
                             <div class="slider-area pt-sm-30 pt-xs-30">
                                 <div class="slider-active owl-carousel owl-loaded owl-drag">
                                     <!-- Begin Single Slide Area -->
-                                    
+
                                     <!-- Single Slide Area End Here -->
                                     <!-- Begin Single Slide Area -->
-                                    
+
                                     <!-- Single Slide Area End Here -->
                                     <!-- Begin Single Slide Area -->
-                                    
+
                                     <!-- Single Slide Area End Here -->
                                 <div class="owl-stage-outer owl-height" style="height: 475px;"><div class="owl-stage" style="transform: translate3d(-1540px, 0px, 0px); transition: all 0.25s ease 0s; width: 5390px;"><div class="owl-item cloned" style="width: 770px;"><div class="single-slide align-center-left animation-style-02 bg-2">
                                         <div class="slider-progress"></div>
@@ -138,7 +138,7 @@
                         <!-- Li Banner Area End Here -->
                     </div>
                 </div>
-            </div>           
+            </div>
             <!-- Slider With Banner Area End Here -->
             <!-- Begin Static Top Area -->
             <div class="static-top-wrap">
@@ -164,7 +164,7 @@
                                    <li><a class="active" data-toggle="tab" href="#li-new-product"><span>New Arrival</span></a></li>
                                    <li><a data-toggle="tab" href="#li-bestseller-product"><span>Bestseller</span></a></li>
                                    <li><a data-toggle="tab" href="#li-featured-product"><span>Featured Products</span></a></li>
-                                </ul>               
+                                </ul>
                             </div>
                             <!-- Begin Li's Tab Menu Content Area -->
                         </div>
@@ -173,7 +173,7 @@
                         <div id="li-new-product" class="tab-pane active show" role="tabpanel">
                             <div class="row">
                                 <div class="product-active owl-carousel">
-                             
+
                                     @if(isset($categories))
 
                                    @foreach ($categories as $category)
@@ -181,13 +181,13 @@
                                    @foreach ($category->product as $pdItem)
                                    <div class="col-lg-12">
                                        <!-- single-product-wrap start -->
-                                      
+
                                        <div class="single-product-wrap">
                                            <div class="product-image">
                                                <a href="{{ $pdItem->thumbnail_uri }}">
-                                                  
-                                                       
-                                                  
+
+
+
                                                    <img src="{{ $pdItem->thumbnail_uri }}" alt="Li's Product Image">
                                                </a>
                                                <span class="sticker">New</span>
@@ -217,18 +217,20 @@
                                                    <ul class="add-actions-link">
                                                        <li class="add-cart "><a href="{{ route('user.product.cart',$pdItem->id) }}">Add to cart</a></li>
                                                        <li><a class="links-details" href="{{ route('user.wishlist',$pdItem->id) }}"><i class="fa fa-heart-o"></i></a></li>
+
+                                                       <li><a data-id="{{ $pdItem->id }}" id="add_to_compare_{{ $pdItem->id }}" class="links-details add_to_compare" href="javascript:void(0)"><i class="fas fa-not-equal"></i></a></li>
                                                        <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
                                                    </ul>
                                                </div>
                                            </div>
                                        </div>
-                                      
+
                                        <!-- single-product-wrap end -->
                                    </div>
                                    @endforeach
 
                                    @endforeach
-                                   
+
                                    @endif
                                </div>
                             </div>
@@ -236,7 +238,7 @@
                         <div id="li-bestseller-product" class="tab-pane" role="tabpanel">
                             <div class="row">
                                 <div class="product-active owl-carousel">
-                                  
+
                                     <div class="col-lg-12">
                                         <!-- single-product-wrap start -->
                                         <div class="single-product-wrap">
@@ -271,7 +273,8 @@
                                                 </div>
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
-                                                        <li class="add-cart active"><a href="#">Add to cart</a></li>
+                                                        <li class="add-cart active p-0"><a href="#">Add to cart</a></li>
+                                                        <li><a class="links-details" href=""><i class="fa fa-heart-o"></i></a></li>
                                                         <li><a class="links-details" href=""><i class="fa fa-heart-o"></i></a></li>
                                                         <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
                                                     </ul>
@@ -286,7 +289,7 @@
                         <div id="li-featured-product" class="tab-pane" role="tabpanel">
                             <div class="row">
                                 <div class="product-active owl-carousel">
-                                   
+
                                     <div class="col-lg-12">
                                         <!-- single-product-wrap start -->
                                         <div class="single-product-wrap">
@@ -381,7 +384,7 @@
                             </div>
                             <div class="row">
                                 <div class="product-active owl-carousel">
-                             
+
                                      @if(isset($categories))
 
                                     @foreach ($categories as $category)
@@ -389,13 +392,13 @@
                                     @foreach ($category->product as $pdItem)
                                     <div class="col-lg-12">
                                         <!-- single-product-wrap start -->
-                                       
+
                                         <div class="single-product-wrap">
                                             <div class="product-image">
                                                 <a href="{{ $pdItem->thumbnail_uri }}">
-                                                   
-                                                        
-                                                   
+
+
+
                                                     <img src="{{ $pdItem->thumbnail_uri }}" alt="Li's Product Image">
                                                 </a>
                                                 <span class="sticker">New</span>
@@ -425,18 +428,20 @@
                                                     <ul class="add-actions-link">
                                                         <li class="add-cart "><a href="{{ route('user.product.cart',$pdItem->id) }}">Add to cart</a></li>
                                                         <li><a class="links-details" href="{{ route('user.wishlist',$pdItem->id) }}"><i class="fa fa-heart-o"></i></a></li>
+                                                        {{-- This is For Compare Product --}}
+                                                        <li><a data-id="{{ $pdItem->id }}" id="add_to_compare_{{ $pdItem->id }}" class="links-details add_to_compare" href="javascript:void"><i class="fas fa-not-equal"></i></a></li>
                                                         <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
-                                       
+
                                         <!-- single-product-wrap end -->
                                     </div>
                                     @endforeach
 
                                     @endforeach
-                                    
+
                                     @endif
                                 </div>
                             </div>
@@ -466,8 +471,8 @@
 
                             <div class="row">
                                 <div class="product-active owl-carousel">
-                                   
-                                  
+
+
                                     <div class="col-lg-12">
                                         <!-- single-product-wrap start -->
                                         <div class="single-product-wrap">
@@ -509,8 +514,8 @@
                                         </div>
                                         <!-- single-product-wrap end -->
                                     </div>
-                                  
-                                 
+
+
                                 </div>
                             </div>
                         </div>
@@ -861,7 +866,7 @@
             </div>
             <!-- Group Featured Product Area End Here -->
             <!-- Begin Footer Area -->
-          
+
             <div class="footer">
     <!-- Begin Footer Static Top Area -->
     <div class="footer-static-top">
@@ -1088,7 +1093,7 @@
     <!-- Footer Static Bottom Area End Here -->
 </div>            <!-- Footer Area End Here -->
             <!-- Begin Quick View | Modal Area -->
-            
+
             <!-- Quick View | Modal Area End Here -->
         </div>
         <!-- Body Wrapper End Here -->
@@ -1124,7 +1129,7 @@
                                     <img src="images/product/large-size/6.jpg" alt="product image">
                                 </div>
                             </div>
-                            <div class="product-details-thumbs slider-thumbs-1">                                        
+                            <div class="product-details-thumbs slider-thumbs-1">
                                 <div class="sm-image"><img src="images/product/small-size/1.jpg" alt="product image thumb"></div>
                                 <div class="sm-image"><img src="images/product/small-size/2.jpg" alt="product image thumb"></div>
                                 <div class="sm-image"><img src="images/product/small-size/3.jpg" alt="product image thumb"></div>
@@ -1202,6 +1207,39 @@
             </div>
         </div>
     </div>
-</div>  
+</div>
+
+@push('customeFrontJs')
+
+<script>
+
+$(document).on('click','.add_to_compare',function(e){
+e.preventDefault();
+
+let product_id = $(this).data('id');
+let token "{{ csrf_token() }}";
+let path = "{{ route('compare.store') }}";
+
+$.ajax({
+    url:path,
+    type:"POST",
+    datatype:"JSON",
+    data:{
+        product_id:product_id,
+        token:token,
+    },
+    beforeSend: function(){
+        $('#add_to_compare_'+product_id).html('<i class="fa fa-spinner fa-spin"></i>');
+    },
+    complete:function(){
+    $('#');
+    },
+
+})
+})
+
+</script>
+
+@endpush
 
 @endsection
