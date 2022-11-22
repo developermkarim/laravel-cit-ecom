@@ -33,7 +33,7 @@
             <td>{{++$key}}</td>
              <td>{{$item->coupon_name}}</td>
               <td>{{$item->coupon_discount}}</td>
-              <td>{{$item->coupon_validity}}</td>
+              <td>{{Carbon\Carbon::parse($item->coupon_validity)->format('D, d F Y') }}</td>
          
               <td>
 
@@ -169,10 +169,10 @@ $(function(){
     var link = $(this).attr('href');
   Swal.fire({
   title: 'Are you sure?',
-  text: "You won't be able to revert this!",
+  text: "You won't be able to revert this!",/* F */
   icon: 'warning',
   showCancelButton: true,
-  confirmButtonColor: '#3085d6',
+  confirmButtonColor: '#1C3FAA',
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, delete it!'
 }).then((result) => {

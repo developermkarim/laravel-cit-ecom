@@ -19,11 +19,12 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta name="keywords" content="admin template, Rubick Admin Template, dashboard template, flat admin template, responsive admin template, web app">
         <meta name="author" content="LEFT4CODE">
         <title>Dashboard - Rubick - Bootstrap HTML Admin Template</title>
-       
+
         <!-- BEGIN: CSS Assets-->
         @notifyCss
         <link rel="stylesheet" href="{{asset('backend/dist/css/app.css')}}"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <script src="https://kit.fontawesome.com/92d6c198cd.js" crossorigin="anonymous"></script>
         @vite('resourse/css/app.css')
         <!-- END: CSS Assets-->
@@ -65,7 +66,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </li>
                     </ul>
                 </li>
-                
+
                 <li>
                     <a href="javascript:;" class="menu">
                         <div class="menu__icon"> <i data-feather="box"></i> </div>
@@ -584,7 +585,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <a href="javascript:;" class="side-menu {{Request::routeis('dashboard') ? 'side-menu--active' : ''}}  side-menu--open">
                             <div class="side-menu__icon"> <i data-feather="home"></i> </div>
                             <div class="side-menu__title">
-                                Dashboard 
+                                Dashboard
                                 <div class="side-menu__sub-icon"> <i data-feather="chevron-down"></i> </div>
                             </div>
                         </a>
@@ -626,7 +627,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="side-menu__title"> All Brands</div>
                                 </a>
                             </li>
-                           
+
                         </ul>
                     </li>
 
@@ -645,7 +646,37 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="side-menu__title"> All Coupon</div>
                                 </a>
                             </li>
-                           
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="side-menu side-menu--open {{Request::routeis('ship.division.add') ? 'side-menu--active' :''}} ">
+                            <div class="side-menu__icon"> <i data-feather="award"></i> </div>
+                            <div class="side-menu__title">
+                                Manage ShippingArea
+                                <div class="side-menu__sub-icon"> <i data-feather="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                        <ul class="{{Request::routeis('ship.division.add')? 'side-menu__sub-open':''}} ">
+                            <li>
+                                <a href="{{route('ship.division.all')}}" class="side-menu side-menu--active side-menu--open">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> All ShippDivision</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('ship.district.all')}}" class="side-menu side-menu--active side-menu--open">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> All ShippDistrict</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('ship.state.all')}}" class="side-menu side-menu--active side-menu--open">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> All ShippState</div>
+                                </a>
+                            </li>
+
                         </ul>
                     </li>
                      {{--  Brand Management End--}}
@@ -672,7 +703,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="side-menu__title"> Add Sub Categories</div>
                                 </a>
                             </li>
-                           
+
                         </ul>
                     </li>
                     @endhasanyrole
@@ -694,7 +725,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="side-menu__title"> Add Products</div>
                                 </a>
                             </li>
-                          
+
                         </ul>
                     </li>
                      {{--  Product Management end --}}
@@ -713,7 +744,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="intro-x position-relative me-3 me-sm-6">
                         <div class="search d-none d-sm-block">
                             <input type="text" class="search__input form-control border-transparent" placeholder="Search...">
-                            <i data-feather="search" class="search__icon dark-text-gray-300"></i> 
+                            <i data-feather="search" class="search__icon dark-text-gray-300"></i>
                         </div>
                         <a class="notification d-sm-none" href="index.html"> <i data-feather="search" class="notification__icon dark-text-gray-300"></i> </a>
                         <div class="search-result">
@@ -724,14 +755,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="w-8 h-8 bg-theme-18 text-theme-9 d-flex align-items-center justify-content-center rounded-circle"> <i class="w-4 h-4" data-feather="inbox"></i> </div>
                                         <div class="ms-3">Mail Settings</div>
                                     </a>
-                                    <a href="index.html" class="d-flex align-items-center mt-2">
-                                        <div class="w-8 h-8 bg-theme-17 text-theme-11 d-flex align-items-center justify-content-center rounded-circle"> <i class="w-4 h-4" data-feather="users"></i> </div>
-                                        <div class="ms-3">Users & Permissions</div>
-                                    </a>
-                                    <a href="index.html" class="d-flex align-items-center mt-2">
-                                        <div class="w-8 h-8 bg-theme-14 text-theme-10 d-flex align-items-center justify-content-center rounded-circle"> <i class="w-4 h-4" data-feather="credit-card"></i> </div>
-                                        <div class="ms-3">Transactions Report</div>
-                                    </a>
+                                   
                                 </div>
                                 <div class="search-result__content__title">Users</div>
                                 <div class="mb-5">
@@ -742,27 +766,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="ms-3">Robert De Niro</div>
                                         <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">robertdeniro@left4code.com</div>
                                     </a>
-                                    <a href="index.html" class="d-flex align-items-center mt-2">
-                                        <div class="w-8 h-8 image-fit">
-                                            <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle" src="dist/images/profile-3.jpg">
-                                        </div>
-                                        <div class="ms-3">Angelina Jolie</div>
-                                        <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">angelinajolie@left4code.com</div>
-                                    </a>
-                                    <a href="index.html" class="d-flex align-items-center mt-2">
-                                        <div class="w-8 h-8 image-fit">
-                                            <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle" src="dist/images/profile-5.jpg">
-                                        </div>
-                                        <div class="ms-3">Robert De Niro</div>
-                                        <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">robertdeniro@left4code.com</div>
-                                    </a>
-                                    <a href="index.html" class="d-flex align-items-center mt-2">
-                                        <div class="w-8 h-8 image-fit">
-                                            <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle" src="dist/images/profile-1.jpg">
-                                        </div>
-                                        <div class="ms-3">Bruce Willis</div>
-                                        <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">brucewillis@left4code.com</div>
-                                    </a>
+
+
                                 </div>
                                 <div class="search-result__content__title">Products</div>
                                 <a href="index.html" class="d-flex align-items-center mt-2">
@@ -772,27 +777,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="ms-3">Sony Master Series A9G</div>
                                     <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">Electronic</div>
                                 </a>
-                                <a href="index.html" class="d-flex align-items-center mt-2">
-                                    <div class="w-8 h-8 image-fit">
-                                        <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle" src="dist/images/preview-1.jpg">
-                                    </div>
-                                    <div class="ms-3">Samsung Q90 QLED TV</div>
-                                    <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">Electronic</div>
-                                </a>
-                                <a href="index.html" class="d-flex align-items-center mt-2">
-                                    <div class="w-8 h-8 image-fit">
-                                        <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle" src="dist/images/preview-11.jpg">
-                                    </div>
-                                    <div class="ms-3">Samsung Q90 QLED TV</div>
-                                    <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">Electronic</div>
-                                </a>
-                                <a href="index.html" class="d-flex align-items-center mt-2">
-                                    <div class="w-8 h-8 image-fit">
-                                        <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle" src="dist/images/preview-5.jpg">
-                                    </div>
-                                    <div class="ms-3">Nike Tanjun</div>
-                                    <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">Sport &amp; Outdoor</div>
-                                </a>
+
                             </div>
                         </div>
                     </div>
@@ -810,64 +795,16 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                     <div class="ms-2 overflow-hidden">
                                         <div class="d-flex align-items-center">
-                                            <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Robert De Niro</a> 
+                                            <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Robert De Niro</a>
                                             <div class="fs-xs text-gray-500 ms-auto text-nowrap">01:10 PM</div>
                                         </div>
                                         <div class="w-full truncate text-gray-600 mt-0.5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500</div>
                                     </div>
                                 </div>
-                                <div class="cursor-pointer position-relative d-flex align-items-center mt-5">
-                                    <div class="w-12 h-12 flex-none image-fit me-1">
-                                        <img alt="Rubick Bootstrap HTML Admin Template" class="rounded-pill" src="dist/images/profile-3.jpg">
-                                        <div class="w-3 h-3 bg-theme-9 position-absolute end-0 bottom-0 rounded-pill border-2 border-white dark-border-dark-3"></div>
-                                    </div>
-                                    <div class="ms-2 overflow-hidden">
-                                        <div class="d-flex align-items-center">
-                                            <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Angelina Jolie</a> 
-                                            <div class="fs-xs text-gray-500 ms-auto text-nowrap">06:05 AM</div>
-                                        </div>
-                                        <div class="w-full truncate text-gray-600 mt-0.5">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem </div>
-                                    </div>
-                                </div>
-                                <div class="cursor-pointer position-relative d-flex align-items-center mt-5">
-                                    <div class="w-12 h-12 flex-none image-fit me-1">
-                                        <img alt="Rubick Bootstrap HTML Admin Template" class="rounded-pill" src="dist/images/profile-5.jpg">
-                                        <div class="w-3 h-3 bg-theme-9 position-absolute end-0 bottom-0 rounded-pill border-2 border-white dark-border-dark-3"></div>
-                                    </div>
-                                    <div class="ms-2 overflow-hidden">
-                                        <div class="d-flex align-items-center">
-                                            <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Robert De Niro</a> 
-                                            <div class="fs-xs text-gray-500 ms-auto text-nowrap">05:09 AM</div>
-                                        </div>
-                                        <div class="w-full truncate text-gray-600 mt-0.5">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem </div>
-                                    </div>
-                                </div>
-                                <div class="cursor-pointer position-relative d-flex align-items-center mt-5">
-                                    <div class="w-12 h-12 flex-none image-fit me-1">
-                                        <img alt="Rubick Bootstrap HTML Admin Template" class="rounded-pill" src="dist/images/profile-1.jpg">
-                                        <div class="w-3 h-3 bg-theme-9 position-absolute end-0 bottom-0 rounded-pill border-2 border-white dark-border-dark-3"></div>
-                                    </div>
-                                    <div class="ms-2 overflow-hidden">
-                                        <div class="d-flex align-items-center">
-                                            <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Bruce Willis</a> 
-                                            <div class="fs-xs text-gray-500 ms-auto text-nowrap">03:20 PM</div>
-                                        </div>
-                                        <div class="w-full truncate text-gray-600 mt-0.5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500</div>
-                                    </div>
-                                </div>
-                                <div class="cursor-pointer position-relative d-flex align-items-center mt-5">
-                                    <div class="w-12 h-12 flex-none image-fit me-1">
-                                        <img alt="Rubick Bootstrap HTML Admin Template" class="rounded-pill" src="dist/images/profile-5.jpg">
-                                        <div class="w-3 h-3 bg-theme-9 position-absolute end-0 bottom-0 rounded-pill border-2 border-white dark-border-dark-3"></div>
-                                    </div>
-                                    <div class="ms-2 overflow-hidden">
-                                        <div class="d-flex align-items-center">
-                                            <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Kevin Spacey</a> 
-                                            <div class="fs-xs text-gray-500 ms-auto text-nowrap">01:10 PM</div>
-                                        </div>
-                                        <div class="w-full truncate text-gray-600 mt-0.5">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem </div>
-                                    </div>
-                                </div>
+
+
+
+
                             </div>
                         </div>
                     </div>
@@ -916,16 +853,16 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
                 <!-- END: Top Bar -->
                 <div class="">
-                 
+
                     {{-- This is missing piece for admin panel Content --}}
-                    
-                   
-                    
+
+
+
                     @yield('content')
-    
+
                 </div>
             </div>
-          
+
             <!-- END: Content -->
         </div>
         <!-- BEGIN: Dark Mode Switcher-->
@@ -940,7 +877,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="{{asset('backend/dist/js/app.js')}}"></script>
         <!-- END: JS Assets-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
- 
+
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         @notifyJs
       @stack('customJs')

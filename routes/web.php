@@ -11,6 +11,7 @@ use App\Http\Controllers\frontend\UserAuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\frontend\OrderController;
+use App\Http\Controllers\ShippingAreaController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Auth;
@@ -98,11 +99,37 @@ Route::prefix('/coupon')->name('coupon.')->group(function(){
     Route::get('/edit/{id}',[CouponController::class,'editCoupon'])->name('edit');
     Route::put('/update/{id}',[CouponController::class,'updateCoupon'])->name('update');
     Route::get('/delete/{id}',[CouponController::class,'deleteCoupon'])->name('delete');
-    
-    Route::get('coupon/status/{status}/{id}',[CouponController::class,'statusCoupon'])->name('status');
+
+    Route::get('status/{status}/{id}',[CouponController::class,'statusCoupon'])->name('status');
 });
 
+Route::prefix('shipping/')->name('ship.')->group(function(){
 
+    Route::get('/all',[ShippingAreaController::class,'allShipDivision'])->name('division.all');
+    Route::post('/add',[ShippingAreaController::class,'addShippDivision'])->name('division.store');
+    Route::get('/edit/{id}',[ShippingAreaController::class,'editShippDivision'])->name('division.edit');
+    Route::put('/update/{id}',[ShippingAreaController::class,'updateShippDivision'])->name('division.update');
+    Route::get('/delete/{id}',[ShippingAreaController::class,'deleteShippDivision'])->name('division.delete');
+
+    /* Shipping area of District */
+
+Route::get('district/all',[ShippingAreaController::class,'allShipDistrict'])->name('district.all');
+Route::post('district/add',[ShippingAreaController::class,'addShippDistrict'])->name('district.store');
+Route::get('district/edit/{id}',[ShippingAreaController::class,'editShippDistrict'])->name('district.edit');
+Route::put('district/update/{id}',[ShippingAreaController::class,'updateShippDistrict'])->name('district.update');
+Route::get('district/delete/{id}',[ShippingAreaController::class,'deleteShippDistrict'])->name('district.delete');
+
+/* Shipping Area Of State */
+
+/* Combobox data send by ajax Request */
+Route::get('get-district',[ShippingAreaController::class,'getDistrict'])->name('get.district');
+
+Route::get('state/all',[ShippingAreaController::class,'allShipState'])->name('state.all');
+Route::post('state/add',[ShippingAreaController::class,'addShippState'])->name('state.store');
+Route::get('state/edit/{id}',[ShippingAreaController::class,'editShippState'])->name('state.edit');
+Route::put('state/update/{id}',[ShippingAreaController::class,'updateShippState'])->name('state.update');
+Route::get('state/delete/{id}',[ShippingAreaController::class,'deleteShippState'])->name('state.delete');
+});
 
 });
 
