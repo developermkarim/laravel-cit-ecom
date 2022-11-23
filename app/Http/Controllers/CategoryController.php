@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +17,7 @@ class CategoryController extends Controller
         $extension = $requestImage->categoryImage->extension();
         $imageName = 'category-' . $requestImage->slug . '.'. $extension;
         $imagePath = $requestImage->categoryImage->storeAs('category/',$imageName,'public');
-        $image_uri = env('APP_URL') . '/storage/' . $imagePath; 
+        $image_uri = env('APP_URL') . '/storage/' . $imagePath;
 
         return ['imagepath'=>$imageName,'imageUri'=>$image_uri];
     }
@@ -49,13 +50,13 @@ class CategoryController extends Controller
 
             'title' => 'required',
             'slug' => 'required',
-            
+
         ]
         );
-      
+
 
         $image = $this->uploadImage($request);
-      
+
         $category = new Category();
 
         $this->storeCategoryData($request,$category,$image);
@@ -79,7 +80,7 @@ class CategoryController extends Controller
             'slug' => 'required',
         ]
         );
-        
+
 
         $path = 'category/' . $updatedCategory->image;
         if($request->hasFile('categoryImage')){
@@ -93,14 +94,14 @@ class CategoryController extends Controller
      return redirect()->route('category.add');
      }
 
-     
+
 
         $image = $this->uploadImage($request);
         $this->storeCategoryData($request,$updatedCategory,$image);
         notify()->success('Your Brand added successfully!');
         return redirect()->route('category.add');
 
-      
+
 
      }
 
@@ -112,7 +113,7 @@ class CategoryController extends Controller
 
             $deletedCategory->delete();
            notify()->success('Your category successfully Deleted');
-         
+
         }
 
         return redirect()->route('category.add');
@@ -133,7 +134,7 @@ class CategoryController extends Controller
             $image_uri = env('APP_URL') . '/storage/' . $imagePath;
             return ['image'=>$image,'imageUrl'=>$image_uri];
         }
-        
+
        }
 
        public function subStoreData($request, $sub_cat,$sub_cat_image)
@@ -162,7 +163,7 @@ class CategoryController extends Controller
 
        }
 
-       
+
 /*  public function subCategory()
 {
     $subCategory = SubCategory::all();
@@ -176,7 +177,7 @@ public function subCategoryStore(Request $request)
 
         'title' => 'required',
         'slug' => 'required',
-        
+
     ]
     );
     $image = $this->subCatImage($request);
@@ -184,14 +185,14 @@ public function subCategoryStore(Request $request)
     // dd($subCategory);
     $this->subStoreData($request,$subCategory,$image);
     return back();
-    
+
 }
 
 public function editSubCategory(SubCategory $editDataToForm)
 {
     $categoryIdTitle = Category::select('id','title')->get();
         $subCategory = SubCategory::with('category')->get();
-        
+
        /*  $categoriesData = Category::select('id','title')->get();
         $subCategories = SubCategory::with('category')->get(); */
         return view('backend.category.subcategory.add', compact('categoryIdTitle','subCategory','editDataToForm'));
@@ -208,7 +209,7 @@ public function updateSubCategory(Request $request, SubCategory $updateDataPost)
     }else{
         return redirect()->route('subCategory.add');
     }
-   
+
     $image = $this->subCatImage($request);
     $this->storeCategoryData($request,$updateDataPost,$image);
     return back();
@@ -222,13 +223,100 @@ public function subCategoryDelete(SubCategory $deleteData)
     Storage::disk('public')->delete($path);
     $deleteData->delete();
     notify()->success('Data Deleted Successfully');
-    
+
    }
 
    return redirect()->route('subCategory.add');
 
-   
-   
+}
+
+
+  /* Sub Sub Category Methods Here */
+/*   if($request->hasFile('subCategoryImage')){
+
+    $extension = $request->subCategoryImage->extension();
+    $image = 'sub_category-' . $request->slug . '.' . $extension;
+    $imagePath = $request->subCategoryImage->storeAs('subCategory/',$image,'public');
+    $image_uri = env('APP_URL') . '/storage/' . $imagePath;
+    return ['image'=>$image,'imageUrl'=>$image_uri];
+} */
+
+public function getData(Request $request)
+
+{
+    $category_id = $request->category_id;
+
+    $subCategories = SubCategory::select('id','title')->where('category_id',$category_id)->get();
+    //d($subCategories);
+    return response($subCategories);
+}
+
+  public function subSubCateImage($request)
+  {
+
+    if($request->hasFile('subSubCategory_image')){
+
+       /*  $extension = $request->file('subSubCategoryImage')->extension(); */
+       $extension = $request->subSubCategory_image->extension();
+      
+       $imageName = $request->slug. time() . '.' . $extension;
+        $imageStore = $request->subSubCategory_image->storeAs('subSubCategory/', $imageName,'public');
+        $image_uri = env('APP_URL') . '/storage/' . $imageStore;
+
+        return ['image'=>$imageName,'image_uri'=>$image_uri];
+    }
+
+
+  }
+
+  public function subSubStoredata($request,$model,$imageStore){
+        
+$request->validate([
+
+'category_id'=>'required',
+'sub_category_id' => 'required',
+'subSubCategory_image'=> 'required|mimes:png,jpg,webp,jpeg',
+'title' => 'required|unique:sub_sub_categories,title,',
+'slug' => 'required|unique:sub_sub_categories,slug,',
+
+]);
+
+    $model->slug = str($request->slug) ;
+    $model->sub_category_id = $request->sub_category_id	;
+    // $model->SubCategory_id = $request->sub_category_id;
+    $model->title = $request->title;
+    if($request->hasFile('subSubCategory_image')){
+        $model->subSubCategory_image = $imageStore['image'];
+        $model->subSubCategory_image_uri = $imageStore['image_uri'];
+
+    }
+
+
+}
+
+public function subSubcategory()
+{
+    $allSubCategories = SubSubCategory::orderBy('id','desc')->get();
+    $allCategories = Category::all();
+   return view('backend.category.subcategory.subSubCategory.add',compact('allSubCategories','allCategories'));
+}
+
+public function subSubCategoryStore(Request $request)
+{
+ $subSubModel = new SubSubCategory();
+ $categoryImage = $this->subSubCateImage($request);
+ $this->subSubStoredata($request,$subSubModel,$categoryImage);
+
+ $subSubModel->save();
+ return back();
+}
+
+public function editsubSubCategory(SubSubCategory $editDataToForm)
+{
+    $allSubCategories = SubSubCategory::orderBy('id','desc')->get();
+    $allCategories = Category::all();
+    return view('backend.category.subcategory.subSubCategory.add',compact('allCategories','editDataToForm','allSubCategories'));
+    
 }
 
 }

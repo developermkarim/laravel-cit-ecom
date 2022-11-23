@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Compare extends Model
 {
     use HasFactory;
+    protected $gaurded = [];
+
+    public function product()
+    {
+       return $this->belongsTo(Product::class,'product_id');
+    }
+    
 }

@@ -429,8 +429,10 @@
                                                         <li class="add-cart "><a href="{{ route('user.product.cart',$pdItem->id) }}">Add to cart</a></li>
                                                         <li><a class="links-details" href="{{ route('user.wishlist',$pdItem->id) }}"><i class="fa fa-heart-o"></i></a></li>
                                                         {{-- This is For Compare Product --}}
-                                                        <li><a data-id="{{ $pdItem->id }}" id="add_to_compare_{{ $pdItem->id }}" class="links-details add_to_compare" href="javascript:void"><i class="fas fa-not-equal"></i></a></li>
-                                                        <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
+                                                        <li><a id="{{ $pdItem->id }}" class="links-details add_to_compare" onclick="addToCompare(this.id)" href="javascript:void"><i class="fas fa-not-equal"></i></a></li>
+                                                        <li>
+                                                            <a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -1213,12 +1215,72 @@
 
 <script>
 
-$(document).on('click','.add_to_compare',function(e){
+    function addToCompare(product_id){
+        $.ajax({
+            url:'add-to-compare/'+product_id,
+            type:'GET',
+            datatype:'json',
+            success:(response)=>{
+
+                /* Start sweet alert message of Toast */
+                const Toast = Swal.mixin({
+                    toast:true,
+                    position:'top-end',
+                    showConfirmButton:false,
+                    timer:3000,
+                })
+
+                if($.isEmptyObject(data.error)){
+                    Toast.fire({
+                        type:'success',
+                        icon:'success',
+                        title:data.success,
+                    })
+
+                }
+                else{
+                    Toast.fire({
+                        type:'error',
+                        icon:'error',
+                        title:data.error,
+                    })
+
+                }
+            }
+
+        })
+    }
+
+</script>
+
+@endpush
+
+@endsection
+
+{{--
+    /*
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: 'Signed in successfully'
+})
+
+    */
+/* $(document).on('click','.add_to_compare',function(e){
 e.preventDefault();
 
-let product_id = $(this).data('id');
-let token "{{ csrf_token() }}";
-let path = "{{ route('compare.store') }}";
+
 
 $.ajax({
     url:path,
@@ -1236,10 +1298,5 @@ $.ajax({
     },
 
 })
-})
-
-</script>
-
-@endpush
-
-@endsection
+}) */
+ --}}

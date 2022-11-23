@@ -11,18 +11,18 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
-   
+
     public function addToCart($id)
     {
        if(Auth::check()){
         if(Cart::where('user_id', auth()->user()->id)->where('product_id',$id)->exists()){
 
             Cart::where('user_id',auth()->user()->id)->where('product_id',$id)->first()->increment('quantity');
-            
+
             // dd($wishlist->quantity);
         }
         else{
-            
+
             //  dd($wishlist);
             $wishlist =  WishList::with('products')->where('product_id',$id)->first();
             $cart = new Cart();
@@ -30,18 +30,18 @@ class CartController extends Controller
             $cart->product_id = $id;
             $cart->quantity =  $wishlist->quantity ?? 1;
             $cart->save();
-                
 
-            
+
+
             /* Delete from wishlist */
-           
+
         }
 
         $wishlist =  WishList::with('products')->where('product_id',$id)->first();
 
         if($wishlist != null){
 
-           
+
             $wishlist->delete();
         }
 
@@ -52,7 +52,7 @@ class CartController extends Controller
        else{
         return redirect()->route('user.login');
     }
-    
+
       /*   return view('frontend.cart.cart'); */
     }
 
@@ -89,7 +89,7 @@ class CartController extends Controller
                 'alert-type'=>'error',
             ];
 
-            
+
          }
          return redirect()->back()->with($notification);
 
@@ -117,5 +117,5 @@ class CartController extends Controller
 
         return redirect()->back()->with($notification);
     }
-   
+
 }

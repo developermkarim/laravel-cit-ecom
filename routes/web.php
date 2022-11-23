@@ -79,6 +79,25 @@ Route::prefix('subCategory')->name('subCategory.')->group(function ()
    Route::PUT('update/{updateDataPost:slug}',[CategoryController::class,'updateSubCategory'])->name('update');
 });
 
+/* Sub Sub Category */
+
+/* Sub Sub Category Here */
+Route::prefix('subSubCategory')->name('subSubCategory.')->group(function ()
+{
+    /* send ajax request data by this route */
+    Route::get('/getData',[CategoryController::class,'getData'])->name('get.data');
+   Route::get('/add', [CategoryController::class,'subSubcategory'])->name('add');
+
+   Route::post('/store',[CategoryController::class,'subSubCategoryStore'])->name('store');
+
+   Route::DELETE('delete/{deleteData:slug}',[CategoryController::class,'subSubCategoryDelete'])->name('delete');
+
+   Route::GET('edit/{editDataToForm:slug}',[CategoryController::class,'editsubSubCategory'])->name('edit');
+
+   Route::PUT('update/{updateDataPost:slug}',[CategoryController::class,'updatesubSubCategory'])->name('update');
+});
+
+
 /* Product Here */
 Route::prefix('product/')->name('product.')->group(function(){
     Route::get('/add', [ProductController::class,'storeProduct'])->name('add');
@@ -184,7 +203,8 @@ Route::controller(WishListController::class)->group(function(){
 });
 
 Route::controller(CompareController::class)->group(function(){
-    Route::get('product/compare', 'compareProduct')->name('compare.store');
+    Route::get('/add-to-compare/{product_id}', 'addToCompare');
+
 });
 
 

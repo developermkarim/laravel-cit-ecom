@@ -697,10 +697,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="side-menu__title"> Add Categories</div>
                                 </a>
                             </li>
+                            
                             <li>
                                 <a href="{{route('subCategory.add')}}" class="side-menu side-menu--active side-menu--open">
                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="side-menu__title"> Add Sub Categories</div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('subSubCategory.add')}}" class="side-menu side-menu--active side-menu--open">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> Add Sub SubCategories</div>
                                 </a>
                             </li>
 
@@ -755,7 +763,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="w-8 h-8 bg-theme-18 text-theme-9 d-flex align-items-center justify-content-center rounded-circle"> <i class="w-4 h-4" data-feather="inbox"></i> </div>
                                         <div class="ms-3">Mail Settings</div>
                                     </a>
-                                   
+
                                 </div>
                                 <div class="search-result__content__title">Users</div>
                                 <div class="mb-5">
