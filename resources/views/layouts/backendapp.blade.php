@@ -24,7 +24,7 @@ License: You must have a valid license purchased only from themeforest(the above
         @notifyCss
         <link rel="stylesheet" href="{{asset('backend/dist/css/app.css')}}"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
         <script src="https://kit.fontawesome.com/92d6c198cd.js" crossorigin="anonymous"></script>
         @vite('resourse/css/app.css')
         <!-- END: CSS Assets-->
@@ -733,6 +733,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="side-menu__title"> Add Products</div>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{route('product.all')}}" class="side-menu side-menu--active side-menu--open">
+                                    <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="side-menu__title"> All Products List</div>
+                                </a>
+                            </li>
 
                         </ul>
                     </li>
@@ -885,10 +891,50 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="{{asset('backend/dist/js/app.js')}}"></script>
         <!-- END: JS Assets-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
+        <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+        </script>
+        <script src="{{ asset('backend/dist/js/validate.min.js') }}"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+        <script src=" https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+        <script>
+            @if(Session::has('message'))
+            var type = "{{ Session::get('alert-type','info') }}"
+            switch(type){
+               case 'info':
+               toastr.info(" {{ Session::get('message') }} ");
+               break;
+           
+               case 'success':
+               toastr.success(" {{ Session::get('message') }} ");
+               break;
+           
+               case 'warning':
+               toastr.warning(" {{ Session::get('message') }} ");
+               break;
+           
+               case 'error':
+               toastr.error(" {{ Session::get('message') }} ");
+               break; 
+            }
+            @endif 
+           </script>
+           
         @notifyJs
+
       @stack('customJs')
+
+      <script>
+        tinymce.init({
+          selector: '#mytextarea'
+        });
+        tinymce.init({
+          selector: '#mytextarea2'
+        });
+        
+    </script>
+
 
     </body>
 </html>

@@ -125,16 +125,16 @@
         "created_at" => "2022-11-23 14:46:22"
         "updated_at" => "2022-11-23 14:46:22" --}}
     @enderror
+
     <select name="categoryTitle" id="" class="form-control my-3">
         <option value="" selected disabled>Select One Category</option>
 
         @foreach($allCategories as $item)
 
         <option @selected($editDataToForm->subCategory->category_id == $item->id)  value="{{$item->id}}">{{$item->title}}</option>
-
         @endforeach
-
     </select>
+
     @error('categoryTitle')
     <span class="text-theme-6">{{$message}}</span>
     @enderror

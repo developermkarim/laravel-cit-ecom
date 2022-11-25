@@ -19,6 +19,10 @@ class Product extends Model
     {
         return $this->belongsTo(subCategory::class);
     }
+    public function subSubCategory()
+    {
+        return $this->belongsTo(SubSubCategory::class,'sub_sub_category_id');
+    }
 
     public function brand()
     {

@@ -8,17 +8,16 @@ use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
-    /**
+    /*
      * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $categories=['Computers','Cell Phones','TV & Video','Camera & Photo'];
+        $categories=['Computers','Cell Phones','TV & Video','Camera & Photo','accessories'];
         foreach ($categories as $key => $value) {
             $category = new Category();
-            
             $category->title = $value;
             $category->slug = str($value)->slug();
             $category->save();

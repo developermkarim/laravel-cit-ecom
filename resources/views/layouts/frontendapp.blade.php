@@ -1316,13 +1316,11 @@
        {{-- Toast Notify js  --}}
        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+       <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+       </script>
        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-       {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> --}}
-
-
-      {{--  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script> --}}
+ 
         <!-- Main/Activator js -->
         <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 
@@ -1380,7 +1378,16 @@
             @endif
            </script>
 
+<script>
+    tinymce.init({
+      selector: '#mytextarea'
+    });
+</script>
            @stack('customeFrontJs')
+
+       
+           
+         
     </body>
 
 <!-- shopping-cart31:32-->

@@ -101,8 +101,17 @@ Route::prefix('subSubCategory')->name('subSubCategory.')->group(function ()
 /* Product Here */
 Route::prefix('product/')->name('product.')->group(function(){
     Route::get('/add', [ProductController::class,'storeProduct'])->name('add');
+    Route::get('/all', [ProductController::class,'allProduct'])->name('all');
+    Route::get('/edit/{editProduct:slug}', [ProductController::class,'editProduct'])->name('edit');
+    Route::get('/update', [ProductController::class,'updateProduct'])->name('update');
+    Route::get('/delete/{product:slug}', [ProductController::class,'deleteProduct'])->name('delete');
+    Route::get('/view', [ProductController::class,'viewProduct'])->name('view');
+    Route::get('/status/{status}/{id}', [ProductController::class,'statusProduct'])->name('status');
 
+    /* these method for ajax request */
     Route::get('fetch-sub-category/{id}',[ProductController::class,'fetchSubcategory'])->name('fetch.subCategory');
+    Route::get('get-sub-sub-category/',[ProductController::class,'fetchSubSubcategory'])->name('fetch.sub.subCategory');
+
     //  Route::post('/store',[ProductController::class,'subCategoryStore'])->name('store');
     Route::post('/product_store',[ProductController::class,'productStore'])->name('store');
 
@@ -149,6 +158,8 @@ Route::get('state/edit/{id}',[ShippingAreaController::class,'editShippState'])->
 Route::put('state/update/{id}',[ShippingAreaController::class,'updateShippState'])->name('state.update');
 Route::get('state/delete/{id}',[ShippingAreaController::class,'deleteShippState'])->name('state.delete');
 });
+
+
 
 });
 
