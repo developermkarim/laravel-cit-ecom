@@ -224,13 +224,21 @@ class ProductController extends Controller
     $product->special_deals = $request->special_deals;
     $product->video_uri = $request->video_uri;
     
+if($product->update()){
 
-    $notification = [
-        'message'=>'Product added successfully',
-        'alert-type'=>'success',
-    ];
+    $notification = array(
+        'message' => 'Product Updated Successfully',
+        'alert-type' => 'success'
+    );
+}
+else{
+    $notification = array(
+        'message' => 'SOrry,Product  was not Updated',
+        'alert-type' => 'Error'
+    );
 
-    $product->update();
+}
+    
 
     return redirect()->route('product.all')->with($notification);
 }
@@ -254,7 +262,7 @@ public function updateMultiImage(Request $request)
                 Storage::disk('public')->delete($path);
             }
             $imageExt = $image->extension();
-            $imageName = 'multiImage-' . time() . '.' . $imageExt;
+            $imageName = 'multiImage-' . mt_rand(100,999) . '.' . $imageExt;
             $image_path = $image->storeAs('product/' , $imageName, 'public');
             $image_uri = env('APP_URL') . '/storage/'  . $image_path;
             // dd($image_uri);
@@ -265,7 +273,13 @@ public function updateMultiImage(Request $request)
             $multiImages->save();
         }
 
+        $notification = array(
+            'message'=>'Image not uploaded and Updated',
+            'alert-type'=>'success',
+        );
+
     }
+
     else{
 
         $notification = array(
@@ -273,11 +287,11 @@ public function updateMultiImage(Request $request)
             'alert-type'=>'warning',
         );
 
-        return redirect()->back()->with($notification);
     }
    
+    return redirect()->back()->with($notification);
 
-    return back();
+    // return back();
 }
 /* Update updateMultiImage end */
 
@@ -285,15 +299,31 @@ public function updateMultiImage(Request $request)
 public function deleteMultiImage($id)
 {
    $result = ProductImage::findOrFail($id);
-// dd($result);
+// dd($result->product_name );
+$path = 'product/' . $result->product_name;
    if($result->delete()){
+
+    if(Storage::disk('public')->exists($path)){
+        Storage::disk('public')->delete($path);
+    }
+   
     $notification = array(
         'message'=>'Image deleted from multiImage table',
         'alert-type'=>'success',
     );
+
+   }
+
+   else{
+    $notification = array(
+        'message'=>'Image not deleted from multiImage table',
+        'alert-type'=>'error',
+    );
+
    }
 
    return redirect()->back()->with($notification);
+
 }
 
 /* delete updateMultiImage end */
@@ -322,12 +352,31 @@ public function deleteMultiImage($id)
 
    public function deleteProduct(Product $product)
    {
+    // dd($product->id);
+    $multiImages = ProductImage::where('product_id', $product->id)->get();
+    // dd($multiImages);
+
+    foreach ($multiImages as $key => $value) {
+       $path = 'product/' . $value->product_name;
+       
+       if(Storage::disk('public')->exists($path)){
+         Storage::disk('public')->delete($path);
+
+       }
+
+    };
+
     $deleted = $product->delete();
     if($deleted){
 
-        return back();
-    }
+        $notification = [
+            'message'=>'Product Deleted successfully',
+            'alert-type'=>'success',
+        ];
+       
+    };
 
+return redirect()->route('product.all')->with($notification);
    }
 
 

@@ -26,6 +26,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <link rel="stylesheet" href="{{asset('backend/dist/css/tagsinput.css')}}"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+      {{--   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" > --}}
+
+      <link rel="stylesheet" href="{{asset('backend/dist/css/toastr.min.css')}}"/>
+
         <script src="https://kit.fontawesome.com/92d6c198cd.js" crossorigin="anonymous"></script>
         @vite('resourse/css/app.css')
         <!-- END: CSS Assets-->
@@ -899,9 +903,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="{{ asset('backend/dist/js/tagsinput.js') }}"></script>
 
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-        <script src=" https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+       
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script>
             @if(Session::has('message'))
             var type = "{{ Session::get('alert-type','info') }}"
@@ -925,10 +928,10 @@ License: You must have a valid license purchased only from themeforest(the above
             @endif 
            </script>
 
-        @notifyJs
+@notifyJs
 
-      @stack('customJs')
-
+        <script src=" https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
       <script>
         tinymce.init({
           selector: '#mytextarea'
@@ -939,6 +942,7 @@ License: You must have a valid license purchased only from themeforest(the above
         
     </script>
 
+@stack('customJs')
 
     </body>
 </html>

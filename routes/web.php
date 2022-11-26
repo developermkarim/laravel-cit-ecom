@@ -14,6 +14,7 @@ use App\Http\Controllers\frontend\OrderController;
 use App\Http\Controllers\ShippingAreaController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\WishListController;
+// use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

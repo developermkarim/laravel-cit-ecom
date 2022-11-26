@@ -290,12 +290,15 @@
 	@foreach($multiImgs as $key => $img)
 	<tr>
 		<th scope="row">{{ $key+1 }}</th>
-		<td> <img src="{{ asset($img->product_uri) }}" style="width:70; height: 40px;"> </td>
-		<td> <input type="file" class="form-group" name="multi_img[{{ $img->id }}]"> </td>
+		<td> <img  src="{{ asset($img->product_uri) }}" style="width:70; height: 40px;"> </td>
+		<td> <input  id="product_gallery_images" type="file" class="form-group" name="multi_img[{{ $img->id }}]"> </td>
+        {{-- <div class="row" id="preview_img"></div> --}}
 		<td> 
+
 	<input type="submit" class="btn btn-primary px-4" value="Update Image " />		
-	<a href="{{ route('product.multiImage.delete',$img->id) }}" class="btn btn-danger" id="delete" > Delete </a>		
-		</td>
+	<a href="{{ route('product.multiImage.delete',$img->id) }}" class="btn btn-danger" id="delete" > Delete </a>	
+
+	</td>
 	</tr>
 	@endforeach		 
 
@@ -340,9 +343,7 @@
               long_detail: {
                   required : true,
               }, 
-              thumbnail_name: {
-                  required : true,
-              }, 
+             
               product_gallery_images: {
                   required : true,
               }, 
@@ -378,9 +379,7 @@
               long_detail: {
                   required : 'Please Enter long Description',
               },
-              thumbnail_name: {
-                  required : 'Please Select Product Thambnail Image',
-              },
+             
               product_gallery_images: {
                   required : 'Please Select Product Multi Image',
               },
@@ -440,6 +439,18 @@ function thunmbnail_Url(input){
   }
 }
 </script>
+
+{{-- <script type="text/javascript">
+function multi_thunmbnail_Url(input){
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e){
+      $('#multithumb').attr('src',e.target.result).width(80).height(80);
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+</script> --}}
 
 
 {{-- This is for showing multiple image after uploading --}}
