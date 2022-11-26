@@ -254,7 +254,7 @@ public function updateMultiImage(Request $request)
                 Storage::disk('public')->delete($path);
             }
             $imageExt = $image->extension();
-            $imageName = 'product-' . time() . '.' . $imageExt;
+            $imageName = 'multiImage-' . time() . '.' . $imageExt;
             $image_path = $image->storeAs('product/' , $imageName, 'public');
             $image_uri = env('APP_URL') . '/storage/'  . $image_path;
             // dd($image_uri);
@@ -268,7 +268,12 @@ public function updateMultiImage(Request $request)
     }
     else{
 
-        return 'no Image Uploaded';
+        $notification = array(
+            'message'=>'Image not uploaded',
+            'alert-type'=>'warning',
+        );
+
+        return redirect()->back()->with($notification);
     }
    
 
