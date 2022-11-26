@@ -92,7 +92,7 @@
        <select name="district_id" id="district_id" class="form-select" aria-label="Default select example">
         <option selected>Select one District</option>
       {{--   @foreach ($divisions as $division)
-            <option {{ $division->id == $editeddistrict->division_id? 'selected':'' }} value="{{ $division->id }}">{{ $division->division_name }}</option>
+            <option {{ $division->id == $editedstate->division_id? 'selected':'' }} value="{{ $division->id }}">{{ $division->division_name }}</option>
         @endforeach --}}
        </select>
 
@@ -107,7 +107,7 @@
          @else
 
 
-         <form action="{{route('ship.district.update',$editeddistrict->id)}}"  method="POST" class="card-body">
+         <form action="{{route('ship.district.update',$editedstate->id)}}"  method="POST" class="card-body">
             @csrf
 
         @method('PUT')
@@ -115,23 +115,23 @@
               <h4>Update State</h4>
 
               {{-- Hidden Input --}}
-              <input type="hidden" id="" name="update_id" value="{{ $editeddistrict->id }}">
+              <input type="hidden" id="" name="update_id" value="{{ $editedstate->id }}">
 
               <select name="division_id" id="division_id" class="form-select" aria-label="Default select example">
                 <option selected>Select one Division</option>
                 @foreach ($divisions as $division)
-                    <option {{ $division->id == $editeddistrict->division_id? 'selected':'' }} value="{{ $division->id }}">{{ $division->division_name }}</option>
+                    <option {{ $division->id == $editedstate->division_id? 'selected':'' }} value="{{ $division->id }}">{{ $division->division_name }}</option>
                 @endforeach
                </select>
 
               <select name="district_id" id="district_id" class="form-select" aria-label="Default select example">
                 <option selected>Select one District</option>
-              {{--   @foreach ($divisions as $division)
-                    <option {{ $division->id == $editeddistrict->division_id? 'selected':'' }} value="{{ $division->id }}">{{ $division->division_name }}</option>
-                @endforeach --}}
+                @foreach ($districts as $district)
+                    <option {{ $district->id == $editedstate->district_id? 'selected':'' }} value="{{ $division->id }}">{{ $district->district_name }}</option>
+                @endforeach
                </select>
 
-            <input type="text" name="state_name"  value="{{ $editeddistrict->state_name }}" id="state_name" placeholder="Divison Name" class="form-control">
+            <input type="text" name="state_name"  value="{{ $editedstate->state_name }}" id="state_name" placeholder="Divison Name" class="form-control">
             @error('district_name')
                 <span class="text-theme-6">{{$message}}</span>
             @enderror

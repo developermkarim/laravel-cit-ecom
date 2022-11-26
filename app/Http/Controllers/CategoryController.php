@@ -111,12 +111,19 @@ class CategoryController extends Controller
         if(Storage::disk('public')->exists($path)){
             Storage::disk('public')->delete($path);
 
+            $notification = [
+                'alert-type'=> 'Category Deleted SUccessfully',
+                'message'=>'success',
+            ];
+    
             $deletedCategory->delete();
-           notify()->success('Your category successfully Deleted');
 
         }
 
-        return redirect()->route('category.add');
+     
+        // notify()->success('Your category successfully Deleted');
+
+        return redirect()->route('category.add')->with($notification);
 
        }
 
@@ -150,9 +157,19 @@ class CategoryController extends Controller
 
        }
 
-       $sub_cat->save();
+        if($sub_cat->save()){
+
+            $notification = [
+                'alert-type'=> 'Category Deleted SUccessfully',
+                'message'=>'success',
+            ];
+        }
+
+        return back()->with($notification);
 
        }
+
+
 
        public function categoryToSubCate()
        {

@@ -39,14 +39,14 @@
           <td>{{$item->title}}</td>
            <td>{{$item->slug}}</td>
            <td><img src="{{$item->image_uri}}" width="100" height="100" alt=""> </td>
-          <td><a  class="btn btn-primary" class="btn" href="{{route('subCategory.edit',$item->slug)}}">Edit</a>
+          <td><a  class="btn btn-primary" class="btn" href="{{route('subCategory.edit',$item->slug)}}"><i class="fas fa-edit"></i></a>
             &nbsp;
 
-            <button  id="deleteBtn" class="btn btn-danger">Delete</button>
-          <form action="{{route('subCategory.delete',$item->slug)}}" method="POST">
+            <a  href="{{route('subCategory.delete',$item->slug)}}" id="deleteBtn" class="btn btn-danger"> <i class="fas fa-trash"></i> </a>
+         {{--  <form action="" method="POST">
             @csrf
             @method('DELETE')
-          </form>
+          </form> --}}
           </td>
         </tr> 
         @empty 
@@ -148,23 +148,7 @@
       /* Delete Button With Sweet Alert */
 
 
-  $('#deleteBtn').on('click', function(){
 
-  Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-   
-    $(this).next('form').submit()
-  }
-})
- })
 
     </script>
 @endpush

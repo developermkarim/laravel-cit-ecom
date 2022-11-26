@@ -39,14 +39,14 @@
             <img src="placeholder-category-img.jpg" width="100" height="100" alt=""> 
            @endif
           </td>
-          <td><a  class="btn btn-primary" class="btn" href="{{route('category.edit',$item->slug)}}">Edit</a>
+          <td><a  class="btn btn-primary" class="btn" href="{{route('category.edit',$item->slug)}}"><i class="fas fa-edit"></i></a>
             &nbsp;
 
-            <button  id="deleteBtn" class="btn btn-danger">Delete</button>
-          <form action="{{route('category.delete',$item->slug)}}" method="POST">
+            <a  href="{{route('category.delete',$item->slug)}}" id="deleteBtn" class="btn btn-danger"> <i class="fas fa-trash"></i> </a>
+         {{--  <form action="" method="POST">
             @csrf
             @method('DELETE')
-          </form>
+          </form> --}}
           </td>
         </tr> 
         @empty 
@@ -128,23 +128,35 @@
       /* Delete Button With Sweet Alert */
 
 
-  $('#deleteBtn').on('click', function(){
+      $(function(){
 
-  Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-   
-    $(this).next('form').submit()
-  }
-})
- })
+
+$(document).on('click','#deleteBtn',function(e){
+      e.preventDefault();
+      var link = $(this).attr("href");
+
+
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "Delete This Data?",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, Approve it!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    window.location.href = link
+                    Swal.fire(
+                      'Approved!',
+                      'Your file has been Deleted.',
+                      'success'
+                    )
+                  }
+                }) 
+
+  });
+});
 
     </script>
 @endpush

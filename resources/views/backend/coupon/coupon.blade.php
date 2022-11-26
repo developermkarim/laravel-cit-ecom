@@ -161,32 +161,7 @@
 
       /* Delete Button With Sweet Alert */
 
-$(function(){
 
-
-  $(document).on('click','#deleteBtn', function(e){
-    e.preventDefault();
-    var link = $(this).attr('href');
-  Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",/* F */
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#1C3FAA',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-
-    window.location.href = link;
-    swal.fire( 'Deleted!',
-                        'Your file has been deleted.',
-                        'success')
-
-  }
-})
- })
-})
     </script>
 @endpush
 

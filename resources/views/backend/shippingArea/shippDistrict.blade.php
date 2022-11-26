@@ -32,7 +32,7 @@
 
             <td>{{ $item->division->division_name }}</td>
 
-             <td>{{$item->district_name}}</td>
+             <td>{{$item->district_name}}</td> 
               {{-- <td>{{$item->coupon_discount}}</td> --}}
  
              <td><a  class="btn btn-primary" class="btn" href="{{url('shipping/district/edit',$item->id)}}"><i class="fas fa-edit"></i></a>
@@ -95,8 +95,8 @@
            <button type="submit" class="w-full btn btn-primary">Upload Coupon</button>
          </form>
 
-         @else
 
+         @else
 
          <form action="{{route('ship.district.update',$editeddistrict->id)}}"  method="POST" class="card-body">
             @csrf
@@ -111,7 +111,7 @@
               <select name="division_id" id="division_id" class="form-select" aria-label="Default select example">
                 <option selected>Select one Division</option>
                 @foreach ($divisions as $division)
-                    <option {{ $division->id == $editeddistrict->division_id? 'selected':'' }} value="{{ $division->id }}">{{ $division->division_name }}</option>
+                    <option {{ $division->id == $editeddistrict->division_id ? 'selected':'' }} value="{{ $division->id }}">{{ $division->division_name }}</option>
                 @endforeach
                </select>
 

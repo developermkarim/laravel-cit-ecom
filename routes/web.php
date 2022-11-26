@@ -63,7 +63,7 @@ Route::get('edit/{editedCategory:slug}',[CategoryController::class,'editCategory
 
 Route::PUT('update/{updatedCategory:slug}',[CategoryController::class,'update'])->name('update');
 
-Route::DELETE('/delete/{deletedCategory:slug}',[CategoryController::class,'delete'])->name('delete');
+Route::get('/delete/{deletedCategory:slug}',[CategoryController::class,'delete'])->name('delete');
 });
 
 /* Sub Category Here */
@@ -73,7 +73,7 @@ Route::prefix('subCategory')->name('subCategory.')->group(function ()
 
    Route::post('/store',[CategoryController::class,'subCategoryStore'])->name('store');
 
-   Route::DELETE('delete/{deleteData:slug}',[CategoryController::class,'subCategoryDelete'])->name('delete');
+   Route::get('delete/{deleteData:slug}',[CategoryController::class,'subCategoryDelete'])->name('delete');
 
    Route::GET('edit/{editDataToForm:slug}',[CategoryController::class,'editSubCategory'])->name('edit');
 
@@ -91,7 +91,7 @@ Route::prefix('subSubCategory')->name('subSubCategory.')->group(function ()
 
    Route::post('/store',[CategoryController::class,'subSubCategoryStore'])->name('store');
 
-   Route::DELETE('delete/{deleteData:slug}',[CategoryController::class,'subSubCategoryDelete'])->name('delete');
+   Route::get('delete/{deleteData:slug}',[CategoryController::class,'subSubCategoryDelete'])->name('delete');
 
    Route::GET('edit/{editDataToForm:slug}',[CategoryController::class,'editsubSubCategory'])->name('edit');
 

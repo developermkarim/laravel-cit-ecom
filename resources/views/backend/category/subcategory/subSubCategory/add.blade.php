@@ -18,10 +18,11 @@
         <tr>
           <th scope="col">S/L</th>
           <th scope="col">Category Name</th>
-          <th scope="col">Sub-Category Name</th>
-          <th scope="col">Sub Sub-Category Name</th>
-          <th scope="col">Slug</th>
+          <th scope="col">Sub-category Name</th>
+          <th scope="col">Sub Sub-Category</th>
           <th scope="col">Feature</th>
+          {{-- <th scope="col">Slug</th> --}}
+         
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -40,13 +41,15 @@
          <td>{{$item->subCategory->title}}</td>
          
            <td>{{$item->title}}</td>
-           <td><img src="{{$item->subSubCategory_image_uri}}" width="100" height="100" alt=""> </td>
-          <td><a  class="btn btn-primary" class="btn" href="{{route('subSubCategory.edit',$item->slug)}}">Edit</a>
-            &nbsp;
+           <td><img src="{{$item->subSubCategory_image_uri}}" width="80" height="80" alt=""> </td>
+
+          <td class="text-center">
+            <a  class="btn btn-primary" class="btn" href="{{route('subSubCategory.edit',$item->slug)}}"><i class="fas fa-edit"></i></a>
+           
 
            
-          <a id="deleteBtn" href="{{route('subSubCategory.delete',$item->slug)}}">
-            Delete
+          <a class="btn btn-danger" id="deleteBtn" href="{{route('subSubCategory.delete',$item->slug)}}">
+           <i class="fas fa-trash"></i>
           </a>
           </td>
         </tr>
@@ -190,7 +193,7 @@
       /* Delete Button With Sweet Alert */
 
 
-  $('#deleteBtn').on('click', function(){
+ /*  $('#deleteBtn').on('click', function(){
 
   Swal.fire({
   title: 'Are you sure?',
@@ -206,7 +209,7 @@
     $(this).next('form').submit()
   }
 })
- })
+ }) */
 
     </script>
 
