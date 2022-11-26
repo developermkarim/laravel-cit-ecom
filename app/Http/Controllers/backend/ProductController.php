@@ -9,9 +9,11 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
+use Carbon\Carbon;
 use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -36,9 +38,9 @@ class ProductController extends Controller
 
 
     /* Thumbnail Image Gallery Refactoring */
-    public function gallery_images($request, $productId)
+    public function multiple_images($request, $productId)
     {
-        $galleryImages = $request->product_gallery_images;
+        $galleryImages = $request->file('product_gallery_images');
         foreach ($galleryImages as $gall_Img) {
             $extension = $gall_Img->extension();
                 $gall_image = str($request->title)->slug() . uniqid().'-product.' . $extension;
@@ -51,9 +53,10 @@ class ProductController extends Controller
                 $galleryImageStore->product_uri = $gallery_uri;
                 $galleryImageStore->save();
             }
+
     }
 
-   public function storeProduct()
+   public function addProduct()
    {
     $categories = Category::select('id','title')->get();
     $brands = Brand::select('id','title')->get();
@@ -97,12 +100,12 @@ class ProductController extends Controller
    {
 
     // dd($request->all());
-    // dd($request->product_gallery_images); 
+    // dd($request->product_multiple_images); 
   /*   $result = $this->thumbnailStore($request);
     dd($result);  */
     //   dd($request->all());
     // dd($request->slug ? str($request->slug)->slug() : str($request->title)->slug());
-    $thumbnail = $this->thumbnailStore($request);
+  
     //   dd($thumbnail);
     $product = new Product();
     $product->title = $request->title;
@@ -113,7 +116,6 @@ class ProductController extends Controller
     $product->tags = $request->products_tags;
     $product->sizes = $request->product_size;
     $product->colors = $request->product_color;
-    $product->tags = $request->products_tags;
     $product->status = $request->stock;
     $product->category_id = $request->category;
     $product->sub_category_id = $request->subCategory;
@@ -125,25 +127,32 @@ class ProductController extends Controller
     $product->short_detail = $request->short_detail;
     $product->long_detail = $request->long_detail;
 
+
+    $thumbnail = $this->thumbnailStore($request);
     if($request->hasFile('thumbnail_name')){
         $product->thumbnail_uri = $thumbnail['thumbnail_uri'];
         $product->thumbnail_name = $thumbnail['thumb_name'];
     };
    
-    $product->long_detail = $request->long_detail;
+  
     $product->hot_deals = $request->hot_deals;
     $product->featured = $request->featured;
     $product->special_offer = $request->special_offer;
     $product->special_deals = $request->special_deals;
-
     $product->video_uri = $request->video_uri;
    
-    $product->save();
-    // dd($product);
+   if(  $product->save()){
+    $notification = [
+        'message'=>'Product added successfully',
+        'alert-type'=>'success',
+    ];
 
-    $this->gallery_images($request,$product->id);
-    
-    return back();
+    $this->multiple_images($request,$product->id);
+
+   }
+
+    return redirect()->route('product.all')->with($notification);
+
     } 
 
 
@@ -156,13 +165,133 @@ class ProductController extends Controller
 
     public function editProduct(Product $editProduct)
     {
+        $multiImgs = ProductImage::where('product_id',$editProduct->id)->get();
         $categories = Category::select('id','title')->get();
         $brands = Brand::select('id','title')->get();
        $subCategories = SubCategory::select('id','title')->get();
        $subSubCategories = subSubCategory::select('id','title')->get();
-        return view('backend.product.edit_product',compact('editProduct','categories','brands','subCategories','subSubCategories'));
+        return view('backend.product.edit_product',compact('editProduct','categories','brands','subCategories','subSubCategories','multiImgs'));
     }
 
+
+
+
+    public function updateProduct(Request $request, Product $product)
+    {
+
+   
+    //    dd($request->all());
+
+    $product->title = $request->title;
+    $product->slug = $request->slug ? str($request->slug)->slug() : str($request->title)->slug();
+    $product->price = $request->price;
+    $product->discount_price = $request->discount_price;
+    $product->qty = $request->product_qty;
+    $product->tags = $request->product_tags;
+    $product->sizes = $request->product_size;
+    $product->colors = $request->product_color;
+    $product->status = $request->stock;
+    $product->category_id = $request->category;
+    $product->sub_category_id = $request->subCategory;
+    $product->sub_sub_category_id = $request->subSubCategory;
+    $product->brand_id = $request->brand;
+    $product->start_date = $request->start_date;
+    $product->end_date = $request->end_date;
+    $product->product_code = $request->product_code;
+    $product->short_detail = $request->short_detail;
+    $product->long_detail = $request->long_detail;
+
+    
+    $path = 'product/'. $product->thumbnail_name;
+    //  dd($path);
+    if($request->hasFile('thumbnail_name')){
+
+        if(Storage::disk('public')->exists($path)){
+            Storage::disk('public')->delete($path);
+        }
+
+        $thumbnail = $this->thumbnailStore($request);
+        $product->thumbnail_uri = $thumbnail['thumbnail_uri'];
+        $product->thumbnail_name = $thumbnail['thumb_name'];
+
+      
+    };
+   
+  
+    $product->hot_deals = $request->hot_deals;
+    $product->featured = $request->featured;
+    $product->special_offer = $request->special_offer;
+    $product->special_deals = $request->special_deals;
+    $product->video_uri = $request->video_uri;
+    
+
+    $notification = [
+        'message'=>'Product added successfully',
+        'alert-type'=>'success',
+    ];
+
+    $product->update();
+
+    return redirect()->route('product.all')->with($notification);
+}
+
+
+/* Update updateMultiImage start  */
+public function updateMultiImage(Request $request)
+{
+    $allImages = $request->multi_img;
+
+    // dd($allImages);
+
+    if($request->hasFile('multi_img')){
+        foreach ($allImages as $key => $image) {
+            // dd($key);
+            $multiImages = ProductImage::findOrFail($key);
+    
+            $path = 'product/' . $multiImages->product_name;
+            // dd($path);
+            if(Storage::disk('public')->exists($path)){
+                Storage::disk('public')->delete($path);
+            }
+            $imageExt = $image->extension();
+            $imageName = 'product-' . time() . '.' . $imageExt;
+            $image_path = $image->storeAs('product/' , $imageName, 'public');
+            $image_uri = env('APP_URL') . '/storage/'  . $image_path;
+            // dd($image_uri);
+    
+            $multiImages->product_name = $imageName;
+            $multiImages->product_uri = $image_uri;
+            $multiImages->updated_at = Carbon::now();
+            $multiImages->save();
+        }
+
+    }
+    else{
+
+        return 'no Image Uploaded';
+    }
+   
+
+    return back();
+}
+/* Update updateMultiImage end */
+
+/* delete updateMultiImage start */
+public function deleteMultiImage($id)
+{
+   $result = ProductImage::findOrFail($id);
+// dd($result);
+   if($result->delete()){
+    $notification = array(
+        'message'=>'Image deleted from multiImage table',
+        'alert-type'=>'success',
+    );
+   }
+
+   return redirect()->back()->with($notification);
+}
+
+/* delete updateMultiImage end */
 
 
     /* To change Product Status */
@@ -193,7 +322,10 @@ class ProductController extends Controller
 
         return back();
     }
+
    }
+
+
 
    }
 

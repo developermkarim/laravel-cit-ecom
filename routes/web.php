@@ -100,13 +100,16 @@ Route::prefix('subSubCategory')->name('subSubCategory.')->group(function ()
 
 /* Product Here */
 Route::prefix('product/')->name('product.')->group(function(){
-    Route::get('/add', [ProductController::class,'storeProduct'])->name('add');
+    Route::get('/add', [ProductController::class,'addProduct'])->name('add');
     Route::get('/all', [ProductController::class,'allProduct'])->name('all');
     Route::get('/edit/{editProduct:slug}', [ProductController::class,'editProduct'])->name('edit');
-    Route::get('/update', [ProductController::class,'updateProduct'])->name('update');
+    Route::PUT('/update/{product:slug}', [ProductController::class,'updateProduct'])->name('update');
     Route::get('/delete/{product:slug}', [ProductController::class,'deleteProduct'])->name('delete');
     Route::get('/view', [ProductController::class,'viewProduct'])->name('view');
     Route::get('/status/{status}/{id}', [ProductController::class,'statusProduct'])->name('status');
+    /* Multi Image Update Route */
+    Route::post('/multiImage/update/', [ProductController::class,'updateMultiImage'])->name('update.multiImage');
+    Route::get('/multiImage/delete/{id}', [ProductController::class,'deleteMultiImage'])->name('multiImage.delete');
 
     /* these method for ajax request */
     Route::get('fetch-sub-category/{id}',[ProductController::class,'fetchSubcategory'])->name('fetch.subCategory');

@@ -55,7 +55,7 @@
 				<td>
 					
                     @if ($item->discount_price == null)
-                    <span class="rounded-pill bg-primary text-dark">No Discount</span>
+                    <span class="badge rounded-pill bg-primary text-dark">No Discount</span>
                     @else
                         @php
                             // $totalDiscount = 0;
@@ -65,7 +65,7 @@
                   
 			
 			
-		<span class="rounded-pill bg-danger text-dark">{{ round( $percentageResult) }} %</span>
+		<span style="background-color: red" class="badge rounded-pill bg-danger text-dark">{{ round( $percentageResult) }} %</span>
         @endif
 					 </td>
 

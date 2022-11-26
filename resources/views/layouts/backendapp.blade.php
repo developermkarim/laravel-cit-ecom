@@ -23,6 +23,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN: CSS Assets-->
         @notifyCss
         <link rel="stylesheet" href="{{asset('backend/dist/css/app.css')}}"/>
+        <link rel="stylesheet" href="{{asset('backend/dist/css/tagsinput.css')}}"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
         <script src="https://kit.fontawesome.com/92d6c198cd.js" crossorigin="anonymous"></script>
@@ -894,6 +895,9 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js' referrerpolicy="origin">
         </script>
         <script src="{{ asset('backend/dist/js/validate.min.js') }}"></script>
+
+        <script src="{{ asset('backend/dist/js/tagsinput.js') }}"></script>
+
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
@@ -920,7 +924,7 @@ License: You must have a valid license purchased only from themeforest(the above
             }
             @endif 
            </script>
-           
+
         @notifyJs
 
       @stack('customJs')

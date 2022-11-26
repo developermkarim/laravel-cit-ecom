@@ -46,7 +46,7 @@
 
       <div class="mb-3">
   <label for="inputProductTitle" class="form-label">Product Tags</label>
-  <input type="text" name="product_tags" class="form-control visually-hidden" data-role="tagsinput" value="new product,top product">
+  <input type="text" name="product_tags" class="form-control visually-hidden" adata-role="tagsinput" value="new product,top product">
   </div>
 
   <div class="mb-3">

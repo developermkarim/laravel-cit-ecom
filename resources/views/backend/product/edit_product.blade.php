@@ -26,8 +26,10 @@
 <h5 class="card-title">Add New Product</h5>
 <hr/>
 
-<form id="myForm" method="post" action="{{ route('product.store') }}" enctype="multipart/form-data" >
+<form id="myForm" method="post" action="{{ route('product.update', $editProduct->slug) }}" enctype="multipart/form-data" >
+ @method('PUT')
 @csrf
+
  <div class="form-body mt-4">
 <div class="row">
  <div class="col-lg-8">
@@ -44,14 +46,16 @@
   <input type="text" name="slug" class="form-control" id="inputProductTitle" placeholder="Enter product Slug" value="{{ $editProduct->slug }}">
   </div>
 
-      <div class="mb-3">
+  <div class="mb-3">
   <label for="inputProductTitle" class="form-label">Product Tags</label>
   <input type="text" name="product_tags" class="form-control visually-hidden" data-role="tagsinput" value="{{ $editProduct->tags }}">
-  </div>
+   </div>
 
   <div class="mb-3">
+
   <label for="inputProductTitle" class="form-label">Product Size</label>
   <input type="text" name="product_size" class="form-control visually-hidden" data-role="tagsinput" value="{{ $editProduct->sizes }}">
+
   </div>
 
   <div class="mb-3">
@@ -63,18 +67,18 @@
 
   <div class="form-group mb-3">
   <label for="inputProductDescription" class="form-label">Short Description</label>
-  <textarea name="short_detail" class="form-control" id="inputProductDescription" rows="3"></textarea>
+  <textarea name="short_detail" class="form-control" id="mytextarea2" rows="3">{!! $editProduct->short_detail !!}</textarea>
   </div>
 
    <div class="mb-3">
   <label for="inputProductDescription" class="form-label">Long Description</label>
-  <textarea id="mytextarea" name="long_detail"></textarea>
+  <textarea id="mytextarea" name="long_detail">{!! $editProduct->long_detail !!}</textarea>
   </div>
 
    <div class="mb-3">
   <label for="">Product Youtube
    Video</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" name="video_uri" placeholder="Product Video Link">
+    <input type="text" class="form-control" id="exampleFormControlInput1" name="video_uri" placeholder="Product Video Link" value="{{ $editProduct->video_uri }}">
   </div>
 
 
@@ -83,18 +87,18 @@
   <label for="inputProductTitle" class="form-label">Main Thambnail</label>
   <input name="thumbnail_name" class="form-control" type="file" id="thumbnail_name" onChange="thunmbnail_Url(this)" >
 
-  <img src="" id="mainThmb" />
+  <img src="{{ $editProduct->thumbnail_uri }}" id="mainThmb" width="100" height="100"/>
   </div>
 
 
 
-<div class="form-group mb-3">
+{{-- <div class="form-group mb-3">
   <label for="inputProductTitle" class="form-label">Multiple Image</label>
   <input class="form-control" name="product_gallery_images[]" type="file" id="product_gallery_images" multiple="">
 
 <div class="row" id="preview_img"></div>
 
-  </div>
+  </div> --}}
 
 
  
@@ -116,14 +120,14 @@
 
     <div class="col-md-6">
     <label for="inputCompareatprice" class="form-label">Start Date </label>
-    <input type="date" name="start_date" class="form-control" value="{{ $editProduct->discount_price }}" id="inputCompareatprice" placeholder="00.00">
+    <input type="date" name="start_date" class="form-control" value="{{ $editProduct->start_date }}" id="inputCompareatprice" placeholder="00.00">
     </div>
 
    
 
     <div class="col-md-6">
     <label for="inputCompareatprice" class="form-label">End Date </label>
-    <input type="date" name="end_date" class="form-control" value="{{ $editProduct->discount_price }}" id="inputCompareatprice" placeholder="00.00">
+    <input type="date" name="end_date" class="form-control" value="{{ $editProduct->end_date }}" id="inputCompareatprice" placeholder="00.00">
     </div>
     
 
@@ -134,7 +138,7 @@
     </div>
     <div class="form-group col-md-6">
     <label for="inputStarPoints" class="form-label">Product Quantity</label>
-    <input type="text" name="product_qty" value="{{ $editProduct->product_qty }}"  class="form-control" id="inputStarPoints" placeholder="00.00">
+    <input type="text" name="product_qty" value="{{ $editProduct->qty }}"  class="form-control" id="inputStarPoints" placeholder="00.00">
     </div>
 
 
@@ -261,6 +265,48 @@
 </div>
 
 </div>
+
+<!-- /// Start Update Multi Image  ////// -->
+
+<div class="page-content">
+	<h6 class="mb-0 text-uppercase">Update Multi Image </h6>
+	<hr>
+<div class="card">
+<div class="card-body">
+	<table class="table mb-0 table-striped">
+		<thead>
+			<tr>
+				<th scope="col">#Sl</th>
+				<th scope="col">Image</th>
+				<th scope="col">Change Image </th>
+				<th scope="col">Delete </th>
+			</tr>
+		</thead>
+		<tbody>
+
+ <form method="post" action="{{ route('product.update.multiImage') }}" enctype="multipart/form-data" >
+			@csrf
+
+	@foreach($multiImgs as $key => $img)
+	<tr>
+		<th scope="row">{{ $key+1 }}</th>
+		<td> <img src="{{ asset($img->product_uri) }}" style="width:70; height: 40px;"> </td>
+		<td> <input type="file" class="form-group" name="multi_img[{{ $img->id }}]"> </td>
+		<td> 
+	<input type="submit" class="btn btn-primary px-4" value="Update Image " />		
+	<a href="{{ route('product.multiImage.delete',$img->id) }}" class="btn btn-danger" id="delete" > Delete </a>		
+		</td>
+	</tr>
+	@endforeach		 
+
+		</form>	 
+		</tbody>
+	</table>
+</div>
+</div>
+</div>
+
+<!-- /// End Update Multi Image  ////// -->
 
 
 @push('customJs')
